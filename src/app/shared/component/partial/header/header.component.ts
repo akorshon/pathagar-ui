@@ -1,0 +1,39 @@
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {NavigationEnd, Router} from "@angular/router";
+
+@Component({
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
+})
+export class HeaderComponent {
+
+  public pushRightClass = 'push-right';
+
+  @Input()
+  title = 'পাঠাগার';
+
+  constructor( public router: Router) {
+    this.router.events.subscribe((val) => {
+      if (val instanceof NavigationEnd && window.innerWidth <= 992 && this.isToggled()) {
+        this.toggleSidebar();
+      }
+    });
+  }
+
+
+  isToggled(): boolean {
+    const dom: any = document.querySelector('body');
+    return dom.classList.contains(this.pushRightClass);
+  }
+
+  toggleSidebar() {
+    const dom: any = document.querySelector('body');
+    dom.classList.toggle(this.pushRightClass);
+  }
+
+  onLoggedOut() {
+    localStorage.removeItem('isLoggedIn');
+  }
+
+}

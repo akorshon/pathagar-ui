@@ -1,0 +1,38 @@
+Book component
+<!--
+<div fxLayout="column">
+
+    &lt;!&ndash; Card column &ndash;&gt;
+    <div fxFlex.gt-sm="100%" fxFlex="100">
+        <mat-card>
+            <mat-card-content>
+                <button mat-raised-button (click)="onOpenAuthorModal('add')">New Book</button>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+
+    <div fxLayout="row wrap">
+        <div  *ngFor="let book of books" fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="50%" style="margin-bottom: 16px">
+        <mat-card fxLayout="column" class="h-100">
+            <mat-card-header>
+                <mat-card-title>{{book.name}}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image [src]="photoUrl + book.thumb" (click)="readPdf(book)">
+            <mat-card-content class="flex-fill">
+                <p>{{book.description}}</p>
+            </mat-card-content>
+            <mat-card-actions fxLayout="row" fxLayoutGap="20px" style="padding: 20px">
+                <button mat-raised-button color="primary" (click)="readPdf(book)">Read</button>
+                <button mat-raised-button color="accent" (click)="onOpenAuthorModal('update', book)">Edit</button>
+                <button mat-raised-button color="warn" (click)="onOpenAuthorModal('delete', book)">Delete</button>
+            </mat-card-actions>
+        </mat-card>
+        </div>
+    </div>
+</div>
+
+
+
+
+-->

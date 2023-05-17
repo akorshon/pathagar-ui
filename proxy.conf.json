@@ -1,0 +1,8 @@
+{
+  "/book/*": {
+    "target": "http://localhost:7110/api/public/files/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

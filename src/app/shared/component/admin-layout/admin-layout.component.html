@@ -1,0 +1,6 @@
+<app-header title="পাঠাগার এডমিন"></app-header>
+<app-sidebar layoutType="admin" (collapsedEvent)="receiveCollapsed($event)"></app-sidebar>
+<section [ngClass]="{ collapsed: collapedSideBar }" class="main-container">
+  <router-outlet></router-outlet>
+</section>
+

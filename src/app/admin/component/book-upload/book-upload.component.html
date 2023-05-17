@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">Book upload</div>
+
+
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="mb-3">
+              <input style="display: none" class="form-control" type="file" accept="application/pdf" id="formFileMultiple" multiple (change)="selectBook($event)">
+              <button  class="btn btn-primary" (click)="onClickFileInputButton('formFileMultiple')">
+                <i class="fa fa-upload"></i>
+                Upload Book
+              </button>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+
+          <div class="col-sm-4 my-2" *ngFor="let book of books; let i=index">
+            <div class="card shadow-sm">
+              <pdf-viewer
+                [src]="book.preview"
+                [zoom]="0.3"
+                [autoresize]="true"
+                style="width: 33vh; height: 33vh;"
+                [show-all]="false">
+              </pdf-viewer>
+              <div class="card-body">
+
+                <div class="mb-3">
+                  <label class="form-label">Book Name</label>
+                  <input type="text" class="form-control" [(ngModel)]="book.name">
+                </div>
+
+                <!--<div class="mb-3">
+                  <label class="form-label">Author</label>
+                  <select class="form-select" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>-->
+
+                <div class="d-flex justify-content-end">
+                  <div class="btn-group">
+                    <button (click)="onRemove(i)" class="btn btn-sm btn-warning float-end">Remove</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-end">
+          <button class="float-end btn btn-outline-default"
+                  (click)="onClose()">Close
+          </button>
+          <button [disabled]="submitted"
+                  id="account-submit-btn"
+                  (click)="onSubmit(books)"
+                  class="float-end btn btn-outline-success">Save
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

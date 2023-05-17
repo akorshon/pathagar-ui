@@ -1,0 +1,92 @@
+
+<div class="row">
+
+  <div class="col-12">
+
+    <div class="row">
+      <div class="col-5" *ngIf="isLoaded">
+        <button class="btn btn-sm btn-primary me-1" (click)="zoomIn()" [disabled]="zoom === 3">Zoom In</button>
+        <button  class="btn btn-sm btn-primary mx-1" (click)="zoomOut()" [disabled]="zoom === 1">Zoom Out</button>
+      </div>
+
+    <div *ngIf="isLoaded" class="float-start col-5">
+      <button class="btn btn-sm btn-primary mx-1" (click)="prevPage()"  [disabled]="page === 1">Prev</button>
+      <button  class="btn btn-sm btn-primary mx-1"  (click)="nextPage()" [disabled]="page === totalPages">Next</button>
+
+        <span class="mr-2 ml-2"> {{ page }} / {{ totalPages }}</span>
+    </div>
+
+    <div class="col-2">
+      <button class="btn btn-sm btn-warning float-end" (click)="onClose()">Close</button>
+    </div>
+
+    </div>
+    </div>
+
+
+
+  <div class="col-sm-12">
+    <pdf-viewer [src]="fileUrl + book.filePath"
+                [show-all]="false"
+                [original-size]="false"
+                [fit-to-page]="false"
+                [stick-to-page]="false"
+                [autoresize]="true"
+                [page]="page"
+                [zoom]="zoom"
+                (after-load-complete)="afterLoadComplete($event)"></pdf-viewer>
+
+</div>
+</div>
+
+
+<!--<h2 mat-dialog-title>Upload New Book</h2>
+
+<div mat-dialog-content>
+    <div style="margin-bottom: 15px">
+        <mat-label>Book</mat-label>
+        <br/>
+        <input style="display: none" multiple type="file" id="fileInputSrc" name="fileInput" accept="application/pdf"
+               (change)="selectBook($event)"/>
+        <button mat-raised-button color="primary" class="file-select-button"
+                (click)="onClickFileInputButton('fileInputSrc')">
+            <mat-icon>attach_file</mat-icon>
+            Upload Book
+        </button>
+    </div>
+
+    <mat-card *ngFor="let book of books; let i=index">
+
+        <mat-card-header>Item {{i + 1}}</mat-card-header>
+        <mat-card-content>
+            <pdf-viewer
+                    [src]="book.preview"
+                    [zoom]="0.5"
+                    [autoresize]="true"
+                    style="width: 50vh; height: 50vh;"
+                    [show-all]="false">
+            </pdf-viewer>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Book name</mat-label>
+                <input matInput [(ngModel)]="book.name">
+            </mat-form-field>
+
+            &lt;!&ndash;<mat-form-field appearance="fill">
+                <mat-label>Author</mat-label>
+                <mat-select [(ngModel)]="book.author">
+                    <mat-option *ngFor="let author of authors" [value]="author">{{author.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>&ndash;&gt;
+
+            <button mat-raised-button color="warn" type="button" (click)="onRemove(i)" >Remove</button>
+
+        </mat-card-content>
+    </mat-card>
+
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button type="button" (click)="onSubmit(books)" color="primary">Save</button>
+    <button mat-raised-button class="close" type="button" (click)="onCancel()" color="warn">Cancel</button>
+</div>-->
+
