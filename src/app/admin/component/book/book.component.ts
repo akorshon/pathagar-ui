@@ -1,9 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnInit, ViewChild} from '@angular/core';
 import {Book} from "../../../shared/model/book";
 import {AdminBookService} from "../../service/admin-book-service";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {Title} from "@angular/platform-browser";
 import {environment} from "../../../../environments/environment";
+import {PdfViewerComponent} from "ng2-pdf-viewer";
 
 @Component({
 	selector: 'app-admin-book',

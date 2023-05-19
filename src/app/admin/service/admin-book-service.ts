@@ -16,7 +16,7 @@ export class AdminBookService {
     private http: HttpClient) {
   }
 
-  save(book: Book, bookSrc: any, thumb: any): Observable<any> {
+  save(book: Book, bookSrc: any): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('file', bookSrc);
     formData.append('name', book.name);
@@ -30,8 +30,9 @@ export class AdminBookService {
     }
   }
 
-  findAll(): Observable<any> {
-    return this.http.get(AdminBookService.URL);
+  findAll(page: number): Observable<any> {
+    page = page - 1;
+    return this.http.get(`${AdminBookService.URL}?page=${page}&size=20`);
   }
 
   findById(id: string): Observable<any> {

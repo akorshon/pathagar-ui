@@ -1,61 +1,53 @@
-    <div class="card">
-      <div class="card-header">Book upload</div>
+<div class="card">
+  <div class="card-header">Author</div>
 
-      <div class="card-body ">
-        <div class="row">
-          <div class="col-sm-12">
-            <button (click)="onOpenBookUploadModal()" class="btn  btn-outline-primary me-2">Add new book</button>
-          </div>
+
+  <div class="card-body ">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="mb-3">
+          <input style="display: none" class="form-control" type="file" accept="image/*" id="formFileMultiple" multiple
+                 (change)="onSelectImage($event)">
+          <button class="btn btn-primary" (click)="onClickFileInputButton('formFileMultiple')">
+            <i class="fa fa-upload"></i>
+            Upload author
+          </button>
         </div>
       </div>
     </div>
-<!--<h2 mat-dialog-title>Upload New Book</h2>
 
-<div mat-dialog-content>
-    <div style="margin-bottom: 15px">
-        <mat-label>Book</mat-label>
-        <br/>
-        <input style="display: none" multiple type="file" id="fileInputSrc" name="fileInput" accept="application/pdf"
-               (change)="selectBook($event)"/>
-        <button mat-raised-button color="primary" class="file-select-button"
-                (click)="onClickFileInputButton('fileInputSrc')">
-            <mat-icon>attach_file</mat-icon>
-            Upload Book
+    <div class="row">
+
+      <div class="col-sm-4 my-2" *ngFor="let author of authors; let i=index">
+        <div class="card shadow-sm">
+          <img [src]="author.preview">
+          <div class="card-body">
+            <div class="mb-3">
+              <label class="form-label">Author Name</label>
+              <input type="text" class="form-control" [(ngModel)]="author.name">
+            </div>
+
+            <!--<div class="mb-3">
+              <label class="form-label">Author description</label>
+              <textarea class="form-control" [(ngModel)]="author.description"></textarea>
+            </div>-->
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <button class="float-end btn btn-outline-default"
+                (click)="onCancel()">Close
         </button>
+        <button [disabled]="submitted"
+                id="account-submit-btn"
+                (click)="onSubmit(authors)"
+                class="float-end btn btn-outline-success">Save
+        </button>
+      </div>
     </div>
-
-    <mat-card *ngFor="let book of books; let i=index">
-
-        <mat-card-header>Item {{i + 1}}</mat-card-header>
-        <mat-card-content>
-            <pdf-viewer
-                    [src]="book.preview"
-                    [zoom]="0.5"
-                    [autoresize]="true"
-                    style="width: 50vh; height: 50vh;"
-                    [show-all]="false">
-            </pdf-viewer>
-
-            <mat-form-field appearance="fill">
-                <mat-label>Book name</mat-label>
-                <input matInput [(ngModel)]="book.name">
-            </mat-form-field>
-
-            &lt;!&ndash;<mat-form-field appearance="fill">
-                <mat-label>Author</mat-label>
-                <mat-select [(ngModel)]="book.author">
-                    <mat-option *ngFor="let author of authors" [value]="author">{{author.name}}</mat-option>
-                </mat-select>
-            </mat-form-field>&ndash;&gt;
-
-            <button mat-raised-button color="warn" type="button" (click)="onRemove(i)" >Remove</button>
-
-        </mat-card-content>
-    </mat-card>
-
+  </div>
 </div>
-<div mat-dialog-actions>
-    <button mat-raised-button type="button" (click)="onSubmit(books)" color="primary">Save</button>
-    <button mat-raised-button class="close" type="button" (click)="onCancel()" color="warn">Cancel</button>
-</div>-->
+
 

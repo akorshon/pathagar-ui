@@ -1,5 +1,7 @@
 <div class="row">
   <div class="col-md-12">
+
+    <!-- upload books -->
     <div class="card">
       <div class="card-header">Book upload</div>
 
@@ -25,7 +27,7 @@
               <pdf-viewer
                 [src]="book.preview"
                 [zoom]="0.3"
-                [autoresize]="true"
+                [autoresize]="false"
                 style="width: 33vh; height: 33vh;"
                 [show-all]="false">
               </pdf-viewer>
@@ -71,5 +73,6 @@
       </div>
 
     </div>
-  </div>
+
+</div>
 </div>

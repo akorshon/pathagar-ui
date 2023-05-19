@@ -3,6 +3,7 @@ import {FormBuilder} from "@angular/forms";
 import {environment} from "../../../../environments/environment";
 import {Book} from "../../../shared/model/book";
 import {AdminBookService} from "../../../admin/service/admin-book-service";
+import {Page} from "../../../shared/model/page";
 
 @Component({
 	selector: 'app-book',
@@ -12,6 +13,7 @@ import {AdminBookService} from "../../../admin/service/admin-book-service";
 export class BookComponent implements OnInit {
 
   books =  new Array<Book>();
+  page = Page.emptyPage();
 	photoUrl = environment.backendUrl + '/api/photos/';
 
 	constructor(
@@ -19,7 +21,7 @@ export class BookComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.bookService.findAll().subscribe((resp) => {
+		this.bookService.findAll(this.page.number).subscribe((resp) => {
 			this.books = resp.content;
 		})
 	}

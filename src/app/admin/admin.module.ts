@@ -7,18 +7,26 @@ import {AdminRoutingModule} from "./admin-routing.module";
 import {DashboardComponent} from "./component/dashboard/dashboard.component";
 import {BooksComponent} from "./component/books/books.component";
 import {BookComponent} from "./component/book/book.component";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {AuthorComponent} from "./component/author/author.component";
+import {AuthorsComponent} from "./component/authors/authors.component";
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    PdfViewerModule,
-    AdminRoutingModule,
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        PdfViewerModule,
+        AdminRoutingModule,
+        NgbModule,
+    ],
   declarations: [
     DashboardComponent,
+
+    AuthorComponent,
+    AuthorsComponent,
+
     BooksComponent,
     BookComponent,
     BookUploadComponent

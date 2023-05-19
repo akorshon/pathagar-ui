@@ -11,22 +11,26 @@ import {Author} from "../../shared/model/author";
 })
 export class AdminAuthorService {
 
-  public static  URL = environment.backendUrl + "/api/admin/authors/";
+  public static  URL = environment.backendUrl + "/api/admin/authors";
 
   constructor(
     private http: HttpClient) {
   }
 
-  save(author: Author): Observable<any> {
+  save(author: Author, file: any): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+    formData.append('name', author.name);
+
     if(author.id) {
-      return this.http.put(AdminAuthorService.URL, author);
+      return this.http.put(AdminAuthorService.URL, formData);
     } else {
-      return this.http.post(AdminAuthorService.URL, author);
+      return this.http.post(AdminAuthorService.URL, formData);
     }
   }
 
   findById(id: string): Observable<any> {
-    return this.http.get(AdminAuthorService.URL + id);
+    return this.http.get(`${AdminAuthorService.URL}/id`);
   }
 
   findAll(): Observable<any> {
@@ -34,6 +38,6 @@ export class AdminAuthorService {
   }
 
   delete(id=''): Observable<any> {
-    return this.http.delete(AdminAuthorService.URL + id);
+    return this.http.delete(`${AdminAuthorService.URL}/${id}`);
   }
 }

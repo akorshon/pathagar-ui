@@ -6,6 +6,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Title} from "@angular/platform-browser";
 import {BookUploadComponent} from "../book-upload/book-upload.component";
 import {BookComponent} from "../book/book.component";
+import {Page} from "../../../shared/model/page";
 
 @Component({
 	selector: 'app-book-upload',
@@ -14,9 +15,10 @@ import {BookComponent} from "../book/book.component";
 })
 export class BooksComponent implements OnInit {
 
+  searchTerm: string = '';
+  page = Page.emptyPage();
 	books =  new Array<Book>();
 	fileUrl = environment.backendUrl + '/api/public/files/';
-
 
 	constructor(
     private title: Title,
@@ -26,8 +28,9 @@ export class BooksComponent implements OnInit {
 
 	ngOnInit(): void {
     this.title.setTitle('BOOKS | PATHAGAR ');
-    this.adminBookService.findAll().subscribe((resp: Book[]) => {
-      this.books = resp;
+    this.adminBookService.findAll(this.page.number).subscribe(resp => {
+      this.books = resp.content;
+      this.page = new Page(resp.number, resp.numberOfElements, resp.totalElements, resp.totalPages, resp.first, resp.last)
     });
 	}
 
@@ -50,13 +53,24 @@ export class BooksComponent implements OnInit {
     modalRef.componentInstance.book = book;
   }
 
+  onPageChange(pageNumber: any) {
+    this.adminBookService.findAll(this.page.number).subscribe(resp => {
+      this.books = resp.content;
+    });
+  }
+
+  onClearSearch() {
+    this.searchTerm = '';
+  }
+
+  onSearch(searchText: any) {
+    console.log(searchText.target.value);
+  }
+
   onDelete(book: Book, index: number) {
     this.adminBookService.delete(book.id).subscribe((resp) => {
       this.books.splice(index, 1);
     });
-
   }
-
-
 
 }

@@ -3,36 +3,40 @@ import {Book} from "../../../shared/model/book";
 import {Author} from "../../../shared/model/author";
 import {environment} from "../../../../environments/environment";
 import {AdminBookService} from "../../service/admin-book-service";
-import {AdminAuthorService} from "../../service/admin-author-service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Title} from "@angular/platform-browser";
 import {BookUploadComponent} from "../book-upload/book-upload.component";
+import {AuthorComponent} from "../author/author.component";
+import {AdminAuthorService} from "../../service/admin-author-service";
+import {Page} from "../../../shared/model/page";
 
 @Component({
-	selector: 'app-book-upload',
+	selector: 'app-authors',
 	templateUrl: './authors.component.html',
 	styleUrls: ['./authors.component.scss']
 })
 export class AuthorsComponent implements OnInit {
 
-	bookSrcList = [];
-	books =  new Array<Book>();
+	page = Page.emptyPage();
 	authors = new Array<Author>();
-	photoUrl = environment.backendUrl + '/api/photos/';
-
+  fileUrl = environment.backendUrl + '/api/public/files/';
 
 	constructor(
     private title: Title,
     private ngbModal: NgbModal,
-    private bookService: AdminBookService) {
+    private adminAuthorService: AdminAuthorService) {
 	}
 
 	ngOnInit(): void {
-    this.title.setTitle('BOOK | PATHAGAR ');
+    this.title.setTitle('AUTHORS | PATHAGAR ');
+    this.adminAuthorService.findAll().subscribe(resp => {
+      this.authors = resp.content;
+      this.page = new Page(resp.number, resp.numberOfElements, resp.totalElements, resp.totalPages, resp.first, resp.last)
+    });
 	}
 
-  onOpenBookUploadModal() {
-    const modalRef = this.ngbModal.open(BookUploadComponent, {
+  onOpenAuthorModal() {
+    const modalRef = this.ngbModal.open(AuthorComponent, {
       size: 'xl',
       backdrop: 'static'
     });
@@ -43,49 +47,10 @@ export class AuthorsComponent implements OnInit {
 		fileInput.click();
 	}
 
-	onRemove(index: number) {
-		this.books.splice(index, 1);
-	}
+  onDelete(author: Author, index: number) {
+    this.adminAuthorService.delete(author.id).subscribe((resp) => {
+      this.authors.splice(index, 1);
+    });
+  }
 
-	onSubmit(books: Book[]) {
-		console.log('on submit');
-		let count = 0;
-		for (let i = 0; i < this.books.length; i++) {
-			this.bookService.save(books[i], books[i].file, null).subscribe((resp: Author) => {
-				console.log(resp);
-				this.onFinishUpload(++count)
-			});
-		}
-	}
-
-	onFinishUpload(count: number) {
-		if(count === this.books.length) {
-			//this.dialogRef.close(null);
-		}
-	}
-
-	onCancel() {
-		console.log('on cancel');
-		//this.dialogRef.close(null);
-	}
-
-
-	selectBook(event: any): void {
-		this.bookSrcList = event?.target?.files;
-		const numberOfFiles = this.bookSrcList.length;
-		for (let i = 0; i < numberOfFiles; i++) {
-			let reader = new FileReader();
-
-			reader.readAsArrayBuffer(this.bookSrcList[i]);
-			reader.onload = (e: any) => {
-				let book = new Book();
-				book.preview = e.target.result;
-				book.file =  event?.target?.files[i];
-				// @ts-ignore
-				book.name = this.bookSrcList[i].name;
-				this.books.push(book);
-			};
-
-		}
-	}
 }

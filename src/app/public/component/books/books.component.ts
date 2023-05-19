@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {environment} from "../../../../environments/environment";
 import {Book} from "../../../shared/model/book";
 import {AdminBookService} from "../../../admin/service/admin-book-service";
+import {Page} from "../../../shared/model/page";
 
 @Component({
 	selector: 'app-books',
@@ -11,6 +12,7 @@ import {AdminBookService} from "../../../admin/service/admin-book-service";
 export class BooksComponent implements OnInit {
 
   books =  new Array<Book>();
+  page = Page.emptyPage();
 	photoUrl = environment.backendUrl + '/api/photos/';
 
 	constructor(
@@ -18,7 +20,7 @@ export class BooksComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.bookService.findAll().subscribe((resp) => {
+		this.bookService.findAll(this.page.number).subscribe((resp) => {
 			this.books = resp.content;
 		})
 	}

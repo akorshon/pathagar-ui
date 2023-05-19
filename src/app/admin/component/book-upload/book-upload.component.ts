@@ -11,26 +11,20 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 	templateUrl: './book-upload.component.html',
 	styleUrls: ['./book-upload.component.scss']
 })
-export class BookUploadComponent implements OnInit {
+export class BookUploadComponent {
 
 	bookSrcList = [];
+  book!: Book;
   submitted = false;
 	books =  new Array<Book>();
 	authors = new Array<Author>();
-
+  fileUrl = environment.backendUrl + '/api/public/files/';
 
 	constructor(
     public ngbActiveModal: NgbActiveModal,
 		private bookService: AdminBookService,
 		private authorService: AdminAuthorService) {
 	}
-
-	ngOnInit(): void {
-		this.authorService.findAll().subscribe(resp => {
-			this.authors = resp.content;
-		});
-	}
-
 
 	onClickFileInputButton(id: string) {
 		const fileInput = document.getElementById(id) as HTMLElement;
@@ -49,11 +43,15 @@ export class BookUploadComponent implements OnInit {
 		console.log('on submit');
 		let count = 0;
 		for (let i = 0; i < this.books.length; i++) {
-			this.bookService.save(books[i], books[i].file, null).subscribe((resp: Author) => {
+			this.bookService.save(books[i], books[i].file).subscribe((resp: Author) => {
 				this.onFinishUpload(++count)
 			});
 		}
 	}
+
+  onUpdate(books: Book[]) {
+    console.log('on update');
+  }
 
 	onFinishUpload(count: number) {
 		if(count === this.books.length) {
@@ -79,7 +77,7 @@ export class BookUploadComponent implements OnInit {
 				book.preview = e.target.result;
 				book.file =  event?.target?.files[i];
 				// @ts-ignore
-				book.name = this.bookSrcList[i].name;
+				book.name = this.bookSrcList[i].name.replace(/\.[^/.]+$/, "").replace(/_/g, " ");
 				this.books.push(book);
 			};
 
