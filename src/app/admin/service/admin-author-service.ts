@@ -17,12 +17,16 @@ export class AdminAuthorService {
     private http: HttpClient) {
   }
 
-  save(author: Author, file: any): Observable<any> {
+  save(author: Author, file: any | null): Observable<any> {
     const formData: FormData = new FormData();
-    formData.append('file', file);
+    if (file) {
+      formData.append('file', file);
+    }
     formData.append('name', author.name);
+    formData.append('description', author.description);
 
     if(author.id) {
+      formData.append('id', author.id);
       return this.http.put(AdminAuthorService.URL, formData);
     } else {
       return this.http.post(AdminAuthorService.URL, formData);
@@ -33,8 +37,8 @@ export class AdminAuthorService {
     return this.http.get(`${AdminAuthorService.URL}/id`);
   }
 
-  findAll(): Observable<any> {
-    return this.http.get(AdminAuthorService.URL);
+  findAll(search: string): Observable<any> {
+    return this.http.get(`${AdminAuthorService.URL}?search=${search}`);
   }
 
   delete(id=''): Observable<any> {

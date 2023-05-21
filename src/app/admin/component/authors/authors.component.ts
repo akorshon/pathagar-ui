@@ -1,17 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {Book} from "../../../shared/model/book";
 import {Author} from "../../../shared/model/author";
 import {environment} from "../../../../environments/environment";
-import {AdminBookService} from "../../service/admin-book-service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Title} from "@angular/platform-browser";
-import {BookUploadComponent} from "../book-upload/book-upload.component";
-import {AuthorComponent} from "../author/author.component";
+import {AuthorUploadComponent} from "../author-upload/author-upload.component";
 import {AdminAuthorService} from "../../service/admin-author-service";
 import {Page} from "../../../shared/model/page";
+import {AuthorComponent} from "../author/author.component";
 
 @Component({
-	selector: 'app-authors',
+	selector: 'app-admin-authors',
 	templateUrl: './authors.component.html',
 	styleUrls: ['./authors.component.scss']
 })
@@ -29,16 +27,20 @@ export class AuthorsComponent implements OnInit {
 
 	ngOnInit(): void {
     this.title.setTitle('AUTHORS | PATHAGAR ');
-    this.adminAuthorService.findAll().subscribe(resp => {
+    this.adminAuthorService.findAll('').subscribe(resp => {
       this.authors = resp.content;
       this.page = new Page(resp.number, resp.numberOfElements, resp.totalElements, resp.totalPages, resp.first, resp.last)
     });
 	}
 
   onOpenAuthorModal() {
-    const modalRef = this.ngbModal.open(AuthorComponent, {
+    const modalRef = this.ngbModal.open(AuthorUploadComponent, {
       size: 'xl',
       backdrop: 'static'
+    });
+
+    modalRef.result.then((result) => {
+      this.ngOnInit();
     });
   }
 
@@ -47,10 +49,12 @@ export class AuthorsComponent implements OnInit {
 		fileInput.click();
 	}
 
-  onDelete(author: Author, index: number) {
-    this.adminAuthorService.delete(author.id).subscribe((resp) => {
-      this.authors.splice(index, 1);
+  onEdit(author: Author, index: number) {
+    const modalRef = this.ngbModal.open(AuthorComponent, {
+      size: 'lg',
+      backdrop: 'static'
     });
+    modalRef.componentInstance.author = author;
   }
 
 }

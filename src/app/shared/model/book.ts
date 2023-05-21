@@ -1,15 +1,18 @@
+import {Author} from "./author";
+
 export class Book {
-    id!: string;
+  constructor(
+    public id: string,
+    public name: string,
+    public description: string,
+    public coverImage: string,
+    public filePath: string,
+    public preview: string,
+    public authors: Author[],
+    public file: File) {
+  }
 
-    name!: string;
-
-    description!: string;
-
-    coverImage!: string;
-
-    filePath!: string;
-
-    file!: File;
-
-    preview!: string;
+  static empty(): Book {
+    return new Book('', '', '', '', '', '', [], new File([], ''));
+  }
 }

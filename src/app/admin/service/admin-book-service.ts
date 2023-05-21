@@ -16,12 +16,14 @@ export class AdminBookService {
     private http: HttpClient) {
   }
 
-  save(book: Book, bookSrc: any): Observable<any> {
+  save(book: Book, bookSrc: any | null): Observable<any> {
     const formData: FormData = new FormData();
-    formData.append('file', bookSrc);
+    if(bookSrc) {
+      formData.append('file', bookSrc);
+    }
     formData.append('name', book.name);
     formData.append('description', book.description);
-
+    formData.append('authors', book.authors.map(author => author.id).join(','));
     if(book.id) {
       formData.append('id', book.id);
       return this.http.put(AdminBookService.URL, formData);
@@ -30,9 +32,12 @@ export class AdminBookService {
     }
   }
 
-  findAll(page: number): Observable<any> {
-    page = page - 1;
-    return this.http.get(`${AdminBookService.URL}?page=${page}&size=20`);
+  updateAuthor(bookId: string, authorId: string, action: string): Observable<any> {
+    return this.http.post(`${AdminBookService.URL}/${bookId}/authors/${authorId}/action/${action}`, {});
+  }
+
+  findAll(page: number, search=''): Observable<any> {
+    return this.http.get(`${AdminBookService.URL}?page=${page}&size=20&search=${search}`);
   }
 
   findById(id: string): Observable<any> {

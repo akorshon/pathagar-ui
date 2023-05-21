@@ -6,29 +6,35 @@ import {PdfViewerModule} from "ng2-pdf-viewer";
 import {AdminRoutingModule} from "./admin-routing.module";
 import {DashboardComponent} from "./component/dashboard/dashboard.component";
 import {BooksComponent} from "./component/books/books.component";
-import {BookComponent} from "./component/book/book.component";
+import {BookViewComponent} from "./component/book-view/book-view.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import {AuthorComponent} from "./component/author/author.component";
+import {AuthorUploadComponent} from "./component/author-upload/author-upload.component";
 import {AuthorsComponent} from "./component/authors/authors.component";
+import {BookComponent} from "./component/book/book.component";
+import {NgSelectModule} from "@ng-select/ng-select";
+import {AuthorComponent} from "./component/author/author.component";
 
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        PdfViewerModule,
-        AdminRoutingModule,
-        NgbModule,
-    ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    PdfViewerModule,
+    AdminRoutingModule,
+    NgbModule,
+    NgSelectModule,
+  ],
   declarations: [
     DashboardComponent,
 
+    AuthorUploadComponent,
     AuthorComponent,
     AuthorsComponent,
 
-    BooksComponent,
     BookComponent,
+    BooksComponent,
+    BookViewComponent,
     BookUploadComponent
   ],
   providers: [

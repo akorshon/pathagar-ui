@@ -1,46 +1,51 @@
 <div class="row">
-
   <div class="col-12">
+    <div class="card">
+      <div class="card-header">Book</div>
+      <div class="card-body">
 
-    <div class="row">
-      <div class="col-4" *ngIf="isLoaded">
-        <div class="m-2">
-          <button class="btn btn-sm btn-primary me-1" (click)="zoomIn()" [disabled]="zoom === 3">Zoom In</button>
-          <button class="btn btn-sm btn-primary mx-1" (click)="zoomOut()" [disabled]="zoom === 1">Zoom Out</button>
-        </div>
-      </div>
-
-      <div class="col-5" *ngIf="isLoaded">
-        <div class="float-start m-2">
-          <button class="btn btn-sm btn-primary mx-1" (click)="prevPage()" [disabled]="page === 1">Prev</button>
-          <button class="btn btn-sm btn-primary mx-1" (click)="nextPage()" [disabled]="page === totalPages">Next
-          </button>
-          <span class="mt-2"> {{ page }} / {{ totalPages }}</span>
+        <div class="form-group m-2">
+          <label>Cover</label>
+          <div>
+            <img [src]="fileUrl + book.coverImage" alt="{{book.name}}">
+          </div>
         </div>
 
+        <div class="form-group m-2">
+          <label>Name</label>
+          <input type="text" class="form-control form-control-sm" [(ngModel)]="book.name">
+        </div>
+
+        <div class="form-group m-2">
+          <label>Authors</label>
+          <ng-select [(ngModel)]="book.authors"
+                     [items]="authors | async"
+                     (add)="updateAuthor($event, 'add')"
+                     (remove)="updateAuthor($event.value, 'remove')"
+                     [loading]="authorLoading"
+                     [hideSelected]="true"
+                     [multiple]="true"
+                     [trackByFn]="trackByFn"
+                     [typeahead]="authorInput"
+                     bindLabel="name">
+          </ng-select>
+        </div>
+
+        <div class="form-group m-2">
+          <label>Description</label>
+          <textarea rows="7" class="form-control form-control-sm" [(ngModel)]="book.description"></textarea>
+        </div>
+
       </div>
 
-      <div class="col-3">
-        <div class="m-2">
-          <button class="btn btn-sm btn-warning float-end" (click)="onClose()">Close</button>
+      <div class="card-footer">
+        <button (click)="onDelete(book)" class="btn btn-sm btn-danger m-1 float-start">Delete</button>
+        <div class="float-end">
+          <button class="btn btn-sm btn-primary m-2" (click)="onSave(book)">Save</button>
+          <button class="btn btn-sm btn-warning m-2" (click)="onClose()">Close</button>
         </div>
       </div>
-
     </div>
-  </div>
-
-
-  <div class="col-sm-12">
-    <pdf-viewer [src]="fileUrl + book.filePath"
-                [show-all]="false"
-                [original-size]="false"
-                [fit-to-page]="false"
-                [stick-to-page]="false"
-                [autoresize]="true"
-                [page]="page"
-                [zoom]="zoom"
-                (after-load-complete)="afterLoadComplete($event)"></pdf-viewer>
-
   </div>
 </div>
 

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Book} from "../../../shared/model/book";
 import {Author} from "../../../shared/model/author";
 import {environment} from "../../../../environments/environment";
@@ -44,7 +44,7 @@ export class BookUploadComponent {
 		let count = 0;
 		for (let i = 0; i < this.books.length; i++) {
 			this.bookService.save(books[i], books[i].file).subscribe((resp: Author) => {
-				this.onFinishUpload(++count)
+				this.onFinishUpload(++count);
 			});
 		}
 	}
@@ -73,7 +73,7 @@ export class BookUploadComponent {
 
 			reader.readAsArrayBuffer(this.bookSrcList[i]);
 			reader.onload = (e: any) => {
-				let book = new Book();
+				let book = Book.empty()
 				book.preview = e.target.result;
 				book.file =  event?.target?.files[i];
 				// @ts-ignore

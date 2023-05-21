@@ -1,58 +1,85 @@
-import {Component, HostListener, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Book} from "../../../shared/model/book";
 import {AdminBookService} from "../../service/admin-book-service";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {Title} from "@angular/platform-browser";
 import {environment} from "../../../../environments/environment";
-import {PdfViewerComponent} from "ng2-pdf-viewer";
+import {Author} from "../../../shared/model/author";
+import {AdminAuthorService} from "../../service/admin-author-service";
+import {catchError, concat, distinctUntilChanged, map, Observable, of, Subject, switchMap, tap} from "rxjs";
 
 @Component({
 	selector: 'app-admin-book',
 	templateUrl: './book.component.html',
 	styleUrls: ['./book.component.scss']
 })
-export class BookComponent {
+export class BookComponent implements OnInit {
 
   @Input()
   book!: Book;
-  page: number = 1;
-  zoom: number = 1;
-  totalPages: number = 0;
-  isLoaded: boolean = false;
+  authorLoading = false;
+  authors!: Observable<Author[]>;
   fileUrl = environment.backendUrl + '/api/public/files/';
+  authorInput = new Subject<string>();
 
 	constructor(
     private title: Title,
     public ngbActiveModal: NgbActiveModal,
-    private bookService: AdminBookService) {
+    private authorService: AdminAuthorService,
+    private adminBookService: AdminBookService) {
       this.title.setTitle('BOOK | PATHAGAR ');
 	}
 
-
-  afterLoadComplete(pdfData: any) {
-    this.totalPages = pdfData.numPages;
-    this.isLoaded = true;
+  ngOnInit(): void {
+    this.loadAuthor();
   }
 
-  nextPage() {
-    this.page++;
-  }
-
-  prevPage() {
-    this.page--;
-  }
-
-  zoomIn() {
-    this.zoom = this.zoom + 0.25;
-  }
-
-  zoomOut() {
-    if (this.zoom > 1) {
-      this.zoom = this.zoom - 0.25;
-    }
+  onSave(book: Book) {
+    console.log(book);
+    this.adminBookService.save(book, null).subscribe(resp => {
+      this.ngbActiveModal.close({
+        action: 'saved',
+        book: resp,
+      });
+    });
   }
 
   onClose() {
     this.ngbActiveModal.close();
+  }
+
+  updateAuthor(author: Author, action: string) {
+    console.log(author);
+    this.adminBookService.updateAuthor(this.book.id, author.id, action).subscribe(resp => {
+    });
+  }
+
+
+  trackByFn(author: Author) {
+    return author.id;
+  }
+
+  private loadAuthor() {
+    this.authors = concat(
+      of([]), // default items
+      this.authorInput.pipe(
+        distinctUntilChanged(),
+        tap(() => this.authorLoading = true),
+        switchMap(term => this.authorService.findAll(term).pipe(
+          map(resp => resp.content),
+          catchError(() => of([])), // empty list on error
+          tap(() => this.authorLoading = false)
+        ))
+      )
+    );
+  }
+
+  onDelete(book: Book) {
+    this.adminBookService.delete(book.id).subscribe(resp => {
+      this.ngbActiveModal.close({
+        action: 'deleted',
+        id: book.id,
+      });
+    });
   }
 }

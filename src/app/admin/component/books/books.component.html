@@ -16,7 +16,7 @@
             <input class="form-control"
                    type="text" name="searchTerm"
                     [(ngModel)]="searchTerm"
-                   (keyup.enter)="onSearch($event)"
+                   (keyup.enter)="onSearch(searchTerm)"
                    placeholder="Search by account name"/>
             <div class="input-group-append">
               <button (click)="onClearSearch()" class="btn btn-outline-secondary" type="button">X</button>
@@ -36,7 +36,7 @@
               </div>
 
               <div class="card-footer">
-                <button (click)="onDelete(book, i)" class="btn btn-sm btn-outline-warning m-1">Delete</button>
+                <button (click)="onEdit(book, i)" class="btn btn-sm btn-outline-primary m-1 float-start">Edit</button>
               </div>
 
             </div>

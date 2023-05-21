@@ -1,3 +1,5 @@
+import {Book} from "./book";
+
 export class Author {
   constructor(
     public id: string,
@@ -5,10 +7,11 @@ export class Author {
     public description: string,
     public thumbnail: string,
     public image: string,
-    public preview: string) {
+    public preview: string,
+    public books: Book[]) {
   }
 
   static empty(): Author {
-    return new Author('', '', '', '', '', '');
+    return new Author('', '', '', '', '', '', []);
   }
 }

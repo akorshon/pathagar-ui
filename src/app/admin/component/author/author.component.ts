@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Book} from "../../../shared/model/book";
 import {Author} from "../../../shared/model/author";
 import {environment} from "../../../../environments/environment";
 import {AdminAuthorService} from "../../service/admin-author-service";
@@ -7,15 +6,14 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {Title} from "@angular/platform-browser";
 
 @Component({
-	selector: 'app-book-upload',
+	selector: 'app-admin-author-upload',
 	templateUrl: './author.component.html',
 	styleUrls: ['./author.component.scss']
 })
 export class AuthorComponent implements OnInit {
 
   submitted = false;
-  selectedFiles!: FileList;
-  authors =  new Array<Author>();
+  author = Author.empty();
   fileUrl = environment.backendUrl + '/api/public/files/';
 
   constructor(
@@ -25,54 +23,28 @@ export class AuthorComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-    this.title.setTitle('AUTHOR | PATHAGAR ');
+      this.title.setTitle('AUTHOR | PATHAGAR ');
+      console.log(this.author)
 	}
 
 
-	onClickFileInputButton(id: string) {
-		const fileInput = document.getElementById(id) as HTMLElement;
-		fileInput.click();
-	}
-
-
-	onSubmit(authors: Author[]) {
-		console.log('on submit');
-		let count = 0;
-    for (let i = 0; i < this.authors.length; i++) {
-      this.adminAuthorService.save(this.authors[i], this.authors[i].image).subscribe((resp: Author) => {
-        this.onFinishUpload(++count)
+	onSubmit(author: Author) {
+      console.log(author);
+      this.adminAuthorService.save(author, null).subscribe((resp: Author) => {
+        this.ngbActiveModal.close(resp);
       });
     }
-	}
 
-  onFinishUpload(count: number) {
-    if(count === this.authors.length) {
+
+    onCancel() {
       this.ngbActiveModal.close(null);
-    }
-  }
-
-	onCancel() {
-    this.ngbActiveModal.close(null);
 	}
 
-  onSelectImage(event: any): void {
-    this.selectedFiles = event?.target?.files;
-    const numberOfFiles = this.selectedFiles.length;
 
-    for (let i = 0; i < numberOfFiles; i++) {
-      let reader = new FileReader();
-      reader.readAsDataURL(this.selectedFiles[i]);
-      reader.onload = (e: any) => {
-        let author = Author.empty();
-        author.preview = e.target.result;
-        author.image =  event?.target?.files[i];
-
-        // @ts-ignore
-        author.name = this.selectedFiles[i].name.replace(/\.[^/.]+$/, "").replace(/_/g, " ");
-        this.authors.push(author);
-      };
-
-    }
+  onDelete(author: Author) {
+    this.adminAuthorService.delete(author.id).subscribe((resp) => {
+      this.ngbActiveModal.close(resp);
+    });
   }
 
 }

@@ -10,7 +10,7 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="mb-3">
-              <input style="display: none" class="form-control" type="file" accept="application/pdf" id="formFileMultiple" multiple (change)="selectBook($event)">
+              <input style="display: none" class="form-control" type="file" accept=".pdf, .epub" id="formFileMultiple" multiple (change)="selectBook($event)">
               <button  class="btn btn-primary" (click)="onClickFileInputButton('formFileMultiple')">
                 <i class="fa fa-upload"></i>
                 Upload Book
