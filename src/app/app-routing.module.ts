@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {AdminLayoutComponent} from "./shared/component/admin-layout/admin-layout.component";
 import {PublicLayoutComponent} from "./shared/component/public-layout/public-layout.component";
 import {PrivateLayoutComponent} from "./shared/component/private-layout/private-layout.component";
+import {AuthLayoutComponent} from "./shared/component/auth-layout/auth-layout.component";
 
 const routes: Routes = [
   {
@@ -11,9 +12,9 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'books',
-    component: PublicLayoutComponent,
-    loadChildren: () => import('./public/public.module').then(m => m.PublicModule)
+    path: 'auth',
+    component: AuthLayoutComponent,
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
     path: 'admin',

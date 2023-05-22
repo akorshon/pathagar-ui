@@ -8,10 +8,11 @@ export class Author {
     public thumbnail: string,
     public image: string,
     public preview: string,
-    public books: Book[]) {
+    public books: Book[],
+    public file: File) {
   }
 
   static empty(): Author {
-    return new Author('', '', '', '', '', '', []);
+    return new Author('', '', '', '', '', '', [], new File([], ''));
   }
 }

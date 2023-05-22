@@ -17,19 +17,11 @@ export class AdminAuthorService {
     private http: HttpClient) {
   }
 
-  save(author: Author, file: any | null): Observable<any> {
-    const formData: FormData = new FormData();
-    if (file) {
-      formData.append('file', file);
-    }
-    formData.append('name', author.name);
-    formData.append('description', author.description);
-
+  save(author: Author): Observable<any> {
     if(author.id) {
-      formData.append('id', author.id);
-      return this.http.put(AdminAuthorService.URL, formData);
+      return this.http.put(AdminAuthorService.URL, author);
     } else {
-      return this.http.post(AdminAuthorService.URL, formData);
+      return this.http.post(AdminAuthorService.URL, author);
     }
   }
 

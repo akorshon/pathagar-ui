@@ -5,7 +5,8 @@ import {environment} from "../../../../environments/environment";
 import {AdminBookService} from "../../service/admin-book-service";
 import {AdminAuthorService} from "../../service/admin-author-service";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {pdfjsVersion} from "ngx-extended-pdf-viewer";
+import {AdminFileService} from "../../service/admin-file-service";
+import {FileType} from "../../../shared/model/file-type";
 
 @Component({
 	selector: 'app-book-upload',
@@ -23,8 +24,9 @@ export class BookUploadComponent {
 
 	constructor(
     public ngbActiveModal: NgbActiveModal,
-		private bookService: AdminBookService,
-		private authorService: AdminAuthorService) {
+		private adminBookService: AdminBookService,
+    private adminFileService: AdminFileService,
+		private adminAuthorService: AdminAuthorService) {
 	}
 
 	onClickFileInputButton(id: string) {
@@ -44,9 +46,13 @@ export class BookUploadComponent {
 		console.log('on submit');
 		let count = 0;
 		for (let i = 0; i < this.books.length; i++) {
-			this.bookService.save(books[i], books[i].file).subscribe((resp: Author) => {
-				this.onFinishUpload(++count);
-			});
+      this.adminFileService.upload(this.books[i].file, FileType.BOOK).subscribe(resp => {
+        console.log(resp.filePath);
+        this.books[i].filePath = resp.filePath;
+        this.adminBookService.save(this.books[i]).subscribe(resp => {
+          this.onFinishUpload(++count);
+        });
+      });
 		}
 	}
 

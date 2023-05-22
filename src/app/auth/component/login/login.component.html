@@ -1,0 +1,40 @@
+<div class="row align-items-center g-5 py-5">
+
+  <div class="col-lg-4 text-center text-lg-start px-5">
+    <h1 class="display-4 fw-bold lh-1 mb-3">PATHAGAR </h1>
+    <div class="row">
+      <p class="col-lg-10 fs-4">
+        Read books, listen to audio books, watch videos, and do quizzes.
+      </p>
+    </div>
+  </div>
+
+  <div class="col-10 mx-auto col-lg-6">
+      <div class="form-floating mb-3">
+        <input type="email"
+               [(ngModel)]="login.email"
+               name="email"
+               class="form-control"
+               autofocus
+               placeholder="name@example.com">
+        <label>Email</label>
+      </div>
+
+
+      <div class="form-floating mb-3">
+        <input type="password"
+               [(ngModel)]="login.password"
+               name="password"
+               class="form-control"
+               placeholder="Password">
+        <label>Password</label>
+      </div>
+
+
+      <button type="submit"
+              [disabled]="submitted"
+              (click)="onSubmit(login)"
+              class="w-100 btn btn-lg btn-primary" >Log in</button>
+      <hr class="my-4">
+  </div>
+</div>

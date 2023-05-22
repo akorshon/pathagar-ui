@@ -7,6 +7,7 @@ import {environment} from "../../../../environments/environment";
 import {Author} from "../../../shared/model/author";
 import {AdminAuthorService} from "../../service/admin-author-service";
 import {catchError, concat, distinctUntilChanged, map, Observable, of, Subject, switchMap, tap} from "rxjs";
+import {FileType} from "../../../shared/model/file-type";
 
 @Component({
 	selector: 'app-admin-book',
@@ -36,7 +37,7 @@ export class BookComponent implements OnInit {
 
   onSave(book: Book) {
     console.log(book);
-    this.adminBookService.save(book, null).subscribe(resp => {
+    this.adminBookService.save(book).subscribe(resp => {
       this.ngbActiveModal.close({
         action: 'saved',
         book: resp,

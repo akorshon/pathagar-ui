@@ -30,11 +30,10 @@ export class AuthorComponent implements OnInit {
 
 	onSubmit(author: Author) {
       console.log(author);
-      this.adminAuthorService.save(author, null).subscribe((resp: Author) => {
+      this.adminAuthorService.save(author).subscribe((resp: Author) => {
         this.ngbActiveModal.close(resp);
       });
     }
-
 
     onCancel() {
       this.ngbActiveModal.close(null);

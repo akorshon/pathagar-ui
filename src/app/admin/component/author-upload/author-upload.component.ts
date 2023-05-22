@@ -4,6 +4,8 @@ import {environment} from "../../../../environments/environment";
 import {AdminAuthorService} from "../../service/admin-author-service";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {Title} from "@angular/platform-browser";
+import {AdminFileService} from "../../service/admin-file-service";
+import {FileType} from "../../../shared/model/file-type";
 
 @Component({
 	selector: 'app-admin-author-upload',
@@ -13,13 +15,14 @@ import {Title} from "@angular/platform-browser";
 export class AuthorUploadComponent implements OnInit {
 
   submitted = false;
-  selectedFiles!: FileList;
+  selectedFiles = new Array<File>();
   authors =  new Array<Author>();
   fileUrl = environment.backendUrl + '/api/public/files/';
 
   constructor(
     private title: Title,
     public ngbActiveModal: NgbActiveModal,
+    private adminFileService: AdminFileService,
     private adminAuthorService: AdminAuthorService) {
 	}
 
@@ -38,8 +41,11 @@ export class AuthorUploadComponent implements OnInit {
 		console.log('on submit');
 		let count = 0;
     for (let i = 0; i < this.authors.length; i++) {
-      this.adminAuthorService.save(this.authors[i], this.authors[i].image).subscribe((resp: Author) => {
-        this.onFinishUpload(++count)
+      this.adminFileService.upload(this.authors[i].file, FileType.AUTHOR_IMAGE).subscribe(resp => {
+        this.authors[i].image = resp.filePath;
+        this.adminAuthorService.save(this.authors[i]).subscribe(resp => {
+          this.onFinishUpload(++count);
+        });
       });
     }
 	}
@@ -68,8 +74,7 @@ export class AuthorUploadComponent implements OnInit {
       reader.onload = (e: any) => {
         let author = Author.empty();
         author.preview = e.target.result;
-        author.image =  event?.target?.files[i];
-
+        author.file =  event?.target?.files[i];
         // @ts-ignore
         author.name = this.selectedFiles[i].name.replace(/\.[^/.]+$/, "").replace(/_/g, " ");
         this.authors.push(author);
