@@ -8,6 +8,7 @@ import {BookUploadComponent} from "../book-upload/book-upload.component";
 import {BookViewComponent} from "../book-view/book-view.component";
 import {Page} from "../../../shared/model/page";
 import {BookComponent} from "../book/book.component";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
 	selector: 'app-admin-books',
@@ -17,28 +18,37 @@ import {BookComponent} from "../book/book.component";
 export class BooksComponent implements OnInit {
 
   searchTerm: string = '';
+  pageNumber = 1;
   loadInit = true;
-  page = Page.emptyPage();
+  page!: Page;
 	books =  new Array<Book>();
 	fileUrl = environment.backendUrl + '/api/public/files/';
 
 	constructor(
     private title: Title,
+    private router: Router,
     private ngbModal: NgbModal,
+    private route: ActivatedRoute,
     private adminBookService: AdminBookService) {
 	}
 
 	ngOnInit(): void {
     this.title.setTitle('BOOKS | PATHAGAR ');
-	}
+    this.route.queryParams.subscribe((params: any) => {
+      this.pageNumber = params.page ? params.page : 1;
+      this.searchTerm = params.search ? params.search : '';
+    });
+    this.loadPage(this.pageNumber, this.searchTerm);
+  }
 
   private loadPage(pageNumber: number, searchText?: string) {
-    this.adminBookService.findAll(pageNumber).subscribe(resp => {
+    console.log('loadPage' + pageNumber);
+    this.adminBookService.findAll(pageNumber, searchText).subscribe(resp => {
+      this.addToUrl({'page': pageNumber, 'search': searchText});
       this.books = resp.content;
-      console.log(pageNumber);
-      if (pageNumber == 0 && this.loadInit) {
-        this.page = new Page(resp.number, resp.numberOfElements, resp.totalElements, resp.totalPages, resp.first, resp.last);
+      if(this.loadInit) {
         this.loadInit = false;
+        this.page = new Page(pageNumber, resp.numberOfElements, resp.totalElements, resp.totalPages, resp.first, resp.last);
       }
     });
   }
@@ -57,7 +67,7 @@ export class BooksComponent implements OnInit {
 
   onRead(book: Book) {
     const modalRef = this.ngbModal.open(BookViewComponent , {
-      size: 'xl',
+      fullscreen: true,
       backdrop: 'static',
     });
     modalRef.componentInstance.book = book;
@@ -65,18 +75,22 @@ export class BooksComponent implements OnInit {
 
 
   onClearSearch() {
+    this.pageNumber = 1;
     this.searchTerm = '';
+    this.loadInit = true;
+    this.loadPage(this.pageNumber, this.searchTerm);
   }
 
   onSearch(searchText: string) {
-    this.page.number = 0;
-    this.loadPage(this.page.number, searchText);
+    this.pageNumber = 1;
+    this.searchTerm = searchText;
+    this.loadInit = true;
+    this.loadPage(this.pageNumber, this.searchTerm);
   }
 
   onPageChange(pageNumber: any) {
-    console.log(pageNumber);
-    pageNumber = pageNumber - 1;
-    this.loadPage(pageNumber, this.searchTerm);
+    console.log('onPageChange' + pageNumber);
+    this.loadPage(pageNumber, '');
   }
 
 
@@ -89,13 +103,20 @@ export class BooksComponent implements OnInit {
 
     // Return the result when modal closed
     modalRef.result.then((result) => {
-      this.loadPage(0, '');
+      this.loadPage(0, );
     });
   }
 
   onDelete(book: Book, index: number) {
     this.adminBookService.delete(book.id).subscribe((resp) => {
       this.books.splice(index, 1);
+    });
+  }
+
+  addToUrl(params: any) {
+    this.router.navigate([], {
+      queryParams: params,
+      queryParamsHandling: 'merge',
     });
   }
 

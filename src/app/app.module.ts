@@ -8,6 +8,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {SharedModule} from "./shared/shared.module";
 import {CommonModule} from "@angular/common";
 import {LoadingBarHttpClientModule} from "@ngx-loading-bar/http-client";
+import { ExamplePdfViewerComponent } from './example-pdf-viewer/example-pdf-viewer.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 @NgModule({
   imports: [
@@ -18,10 +20,12 @@ import {LoadingBarHttpClientModule} from "@ngx-loading-bar/http-client";
     NgbModule,
     LoadingBarHttpClientModule,
     AppRoutingModule,
+    NgxExtendedPdfViewerModule,
   ],
 
   declarations: [
-    AppComponent
+    AppComponent,
+    ExamplePdfViewerComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

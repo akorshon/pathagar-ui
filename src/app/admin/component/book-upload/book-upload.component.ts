@@ -5,6 +5,7 @@ import {environment} from "../../../../environments/environment";
 import {AdminBookService} from "../../service/admin-book-service";
 import {AdminAuthorService} from "../../service/admin-author-service";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {pdfjsVersion} from "ngx-extended-pdf-viewer";
 
 @Component({
 	selector: 'app-book-upload',
@@ -70,7 +71,6 @@ export class BookUploadComponent {
 		const numberOfFiles = this.bookSrcList.length;
 		for (let i = 0; i < numberOfFiles; i++) {
 			let reader = new FileReader();
-
 			reader.readAsArrayBuffer(this.bookSrcList[i]);
 			reader.onload = (e: any) => {
 				let book = Book.empty()

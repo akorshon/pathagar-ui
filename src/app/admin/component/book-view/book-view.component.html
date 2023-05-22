@@ -1,44 +1,24 @@
 <div class="row">
 
   <div class="col-12">
-
     <div class="row">
-      <div class="col-5" *ngIf="isLoaded">
-        <div class="m-2">
-          <button class="btn btn-sm btn-primary me-1" (click)="zoomIn()" [disabled]="zoom === 3">Zoom In</button>
-          <button class="btn btn-sm btn-primary mx-1" (click)="zoomOut()" [disabled]="zoom === 1">Zoom Out</button>
-        </div>
-      </div>
-
-      <div class="col-5" *ngIf="isLoaded">
-        <div class="m-2">
-          <button class="btn btn-sm btn-primary mx-1" (click)="prevPage()" [disabled]="page === 1">Prev</button>
-          <span class="mt-2 mx-1"> {{ page }} / {{ totalPages }}</span>
-          <button class="btn btn-sm btn-primary mx-1" (click)="nextPage()" [disabled]="page === totalPages">Next</button>
-        </div>
-      </div>
-
-      <div class="col-2">
-        <div class="m-2">
+      <div class="col-12">
+        <div class="m-2 float-end">
           <button class="btn btn-sm btn-warning float-end" (click)="onClose()">Close</button>
         </div>
       </div>
-
     </div>
   </div>
 
 
   <div class="col-sm-12">
-    <pdf-viewer [src]="fileUrl + book.filePath"
-                [show-all]="false"
-                [original-size]="false"
-                [fit-to-page]="false"
-                [stick-to-page]="false"
-                [autoresize]="true"
-                [page]="page"
-                [zoom]="zoom"
-                (after-load-complete)="afterLoadComplete($event)"></pdf-viewer>
-
+    <ngx-extended-pdf-viewer
+      [src]="fileUrl + book.filePath"
+      [useBrowserLocale]="true"
+      [textLayer]="true"
+      (pageChange)="onPageChange($event)"
+      [showHandToolButton]="true">
+    </ngx-extended-pdf-viewer>
   </div>
 </div>
 

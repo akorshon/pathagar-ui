@@ -13,6 +13,7 @@ import {AuthorsComponent} from "./component/authors/authors.component";
 import {BookComponent} from "./component/book/book.component";
 import {NgSelectModule} from "@ng-select/ng-select";
 import {AuthorComponent} from "./component/author/author.component";
+import {NgxExtendedPdfViewerModule} from "ngx-extended-pdf-viewer";
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import {AuthorComponent} from "./component/author/author.component";
     AdminRoutingModule,
     NgbModule,
     NgSelectModule,
+    NgxExtendedPdfViewerModule,
   ],
   declarations: [
     DashboardComponent,

@@ -14,10 +14,6 @@ export class BookViewComponent {
 
   @Input()
   book!: Book;
-  page: number = 1;
-  zoom: number = 1;
-  totalPages: number = 0;
-  isLoaded: boolean = false;
   fileUrl = environment.backendUrl + '/api/public/files/';
 
 	constructor(
@@ -28,28 +24,10 @@ export class BookViewComponent {
 	}
 
 
-  afterLoadComplete(pdfData: any) {
-    this.totalPages = pdfData.numPages;
-    this.isLoaded = true;
+  onPageChange(pageNumber: number) {
+    console.log(pageNumber)
   }
 
-  nextPage() {
-    this.page++;
-  }
-
-  prevPage() {
-    this.page--;
-  }
-
-  zoomIn() {
-    this.zoom = this.zoom + 0.25;
-  }
-
-  zoomOut() {
-    if (this.zoom > 1) {
-      this.zoom = this.zoom - 0.25;
-    }
-  }
 
   onClose() {
     this.ngbActiveModal.close();

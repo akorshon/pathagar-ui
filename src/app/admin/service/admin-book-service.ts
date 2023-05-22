@@ -37,7 +37,8 @@ export class AdminBookService {
   }
 
   findAll(page: number, search=''): Observable<any> {
-    return this.http.get(`${AdminBookService.URL}?page=${page}&size=20&search=${search}`);
+    page = page - 1;
+    return this.http.get(`${AdminBookService.URL}?page=${page}&size=50&search=${search}`);
   }
 
   findById(id: string): Observable<any> {
