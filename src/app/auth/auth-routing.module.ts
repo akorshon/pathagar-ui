@@ -6,6 +6,11 @@ import {RegistrationComponent} from "./component/registration/registration.compo
 
 export const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
     path: 'login',
     component: LoginComponent,
   },

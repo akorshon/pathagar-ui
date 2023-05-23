@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {Registration} from "../../model/registration";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
-import {AuthService} from "../auth.service";
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   templateUrl: 'registration.component.html'

@@ -2,7 +2,9 @@ import {Component, OnInit} from "@angular/core";
 import {Login} from "../../model/login";
 import {Title} from "@angular/platform-browser";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AuthService} from "../auth.service";
+import {AuthService} from "../../service/auth.service";
+import jwtDecode from "jwt-decode";
+import {TokenData} from "../../model/token-data";
 
 @Component({
   templateUrl: 'login.component.html',
@@ -22,15 +24,14 @@ export class LoginComponent  implements OnInit {
     private title: Title,
     private activeRoute: ActivatedRoute,
     protected router: Router,
-    //private jwtService: JwtService,
     //private storageService: StorageService,
     private authService: AuthService) {
   }
 
 
   ngOnInit() {
-    this.title.setTitle('LOGIN | BUSINEZ BOOK ');
-    this.returnUrl = this.activeRoute.snapshot.queryParams['returnUrl'] || 'admin/dashboard';
+    this.title.setTitle('LOGIN | PATHAGAR ');
+    this.returnUrl = this.activeRoute.snapshot.queryParams['returnUrl'] || 'admin';
     if (this.authService.isLoggedIn()) {
       this.router.navigate([this.returnUrl]);
     }
@@ -40,21 +41,15 @@ export class LoginComponent  implements OnInit {
     this.submitted = true;
     this.authService.login(login).subscribe({
       next: (resp) => {
-
+        const tokenData =  jwtDecode<TokenData>(resp.token);
+        localStorage.setItem('token', resp.token);
+        localStorage.setItem('tokenData', JSON.stringify(tokenData));
+        this.submitted = false;
       }, error: (err) => {
-
+        this.submitted = false;
       }, complete: () => {
         this.submitted = false;
       }
     })
-
-    /*resp => {
-        //const tokenData =  this.jwtService.decodedAccessToken(resp.token);
-        //this.storageService.saveToken(resp.token);
-        //this.storageService.saveUser(tokenData);
-        this.submitted = false;
-        this.router.navigate([this.returnUrl]);
-      }
-    );*/
   }
 }

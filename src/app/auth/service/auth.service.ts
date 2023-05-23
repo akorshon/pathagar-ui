@@ -1,7 +1,7 @@
 import {Inject, Injectable, PLATFORM_ID} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Login} from "../model/login";
-import {Observable} from "rxjs";
+import {observable, Observable} from "rxjs";
 import {Registration} from "../model/registration";
 import {isPlatformBrowser} from "@angular/common";
 import {environment} from "../../../environments/environment";
@@ -18,7 +18,7 @@ export class AuthService {
     private http: HttpClient ) {
   }
 
-  login(login: Login): Observable<any> {
+  login(login: Login): Observable<any>  {
     return this.http.post(AuthService.LOGIN_API, login);
   }
 
@@ -40,7 +40,7 @@ export class AuthService {
   }
 
   getToken() {
-    return this.getLocalStorage().getItem('token');
+    return localStorage.getItem('token');
   }
 
   getLocalStorage() {

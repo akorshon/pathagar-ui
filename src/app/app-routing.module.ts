@@ -4,12 +4,13 @@ import {AdminLayoutComponent} from "./shared/component/admin-layout/admin-layout
 import {PublicLayoutComponent} from "./shared/component/public-layout/public-layout.component";
 import {PrivateLayoutComponent} from "./shared/component/private-layout/private-layout.component";
 import {AuthLayoutComponent} from "./shared/component/auth-layout/auth-layout.component";
+import {RoleType} from "./auth/model/role-type";
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/books',
-    pathMatch: 'full'
+    redirectTo: '/admin',
+    pathMatch: 'full',
   },
   {
     path: 'auth',
@@ -19,7 +20,10 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminLayoutComponent,
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+    data: {
+      requiredRoles: [RoleType.ROLE_ADMIN]
+    },
   },
   {
     path: 'private',
