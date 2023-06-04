@@ -6,70 +6,46 @@
       <span>Dashboard</span>
     </a>
 
+    <a [routerLinkActive]="['router-link-active']" class="list-group-item" routerLink="/user/book" *ngIf="layoutType=='user'">
+      <i class="fa fa-book"></i>&nbsp;
+      <span>Books</span>
+    </a>
+
     <a [routerLinkActive]="['router-link-active']" class="list-group-item" routerLink="/admin/book" *ngIf="layoutType=='admin'">
       <i class="fa fa-book"></i>&nbsp;
-      <span>Manage Book</span>
+      <span>Books</span>
     </a>
 
 
     <a [routerLinkActive]="['router-link-active']" class="list-group-item" routerLink="/admin/authors" *ngIf="layoutType=='admin'">
       <i class="fa fa-user-edit"></i> &nbsp;
-      <span>Manage Author</span>
+      <span>Authors</span>
     </a>
 
-
-    <!--<div class="nested-menu" *ngIf="layoutType=='admin'">
-      <a (click)="addExpandClass('report-data')" class="list-group-item">
-        <i class="fa fa-chevron-circle-down"></i>
-        <span>Setting</span>
-      </a>
-      <li [class.expand]="showMenu === 'report-data'" class="nested">
-        <ul class="submenu">
-          <li>
-            <a [routerLinkActive]="['router-link-active']" [routerLink]="['/admin/report/account']">
-                <span>
-                  <i class="fa fa-upload"></i> Book upload
-                </span>
-            </a>
-          </li>
-
-          <li>
-            <a [routerLinkActive]="['router-link-active']" [routerLink]="['/admin/report/balance-sheet']">
-                <span>
-                    <i class="fa fa-book"></i> Author
-                </span>
-            </a>
-          </li>
-
-        </ul>
-      </li>
-    </div>-->
-
-    <a [routerLinkActive]="['router-link-active']" class="list-group-item" routerLink="/admin/user/list" *ngIf="layoutType=='admin'">
-      <i class="fa fa-user"></i>
-      <span>User</span>
+    <a [routerLinkActive]="['router-link-active']" class="list-group-item" routerLink="/admin/user-book" *ngIf="layoutType=='admin'">
+      <i class="fa fa-book-open"></i> &nbsp;
+      <span>My Books</span>
     </a>
 
+    <a [routerLinkActive]="['router-link-active']" class="list-group-item" routerLink="/admin/setting" *ngIf="layoutType=='admin'">
+      <i class="fa fa-cog"></i> &nbsp;
+      <span>Setting</span>
+    </a>
 
     <div class="header-fields">
       <div class="nested-menu">
         <a (click)="addExpandClass('profile')" class="list-group-item">
-          <span><i class="fas fa-user"></i> Admin <b class="caret"></b></span>
+          <i class="fa fa-user"></i> User <i class="fa-solid fa-caret-down"></i>
         </a>
-        <li [class.expand]="showMenu === 'profile'" class="nested">
+        <div [class.expand]="showMenu === 'profile'" class="nested">
           <ul class="submenu">
             <li>
-              <a [routerLink]="['/admin/profile/single']">
-                <span><i class="fa fa-fw fa-user"></i> Profile</span>
-              </a>
-            </li>
-            <li>
-              <a [routerLink]="['/auth/logout']">
+              <button class="btn btn-link" (click)="onLoggedOut()">
                 <span><i class="fa fa-fw fa-power-off"></i> Log Out</span>
-              </a>
+              </button>
             </li>
           </ul>
-        </li>
+        </div>
       </div>
     </div>
   </div>

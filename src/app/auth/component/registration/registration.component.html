@@ -1,16 +1,17 @@
 <div class="row align-items-center g-5 py-5">
 
 
-  <div class="col-lg-4 text-center text-lg-start px-5">
+  <div class="col-lg-6 text-center text-lg-start px-5">
     <h1 class="display-4 fw-bold lh-1 mb-3">PATHAGAR </h1>
     <div class="row">
       <p class="col-lg-10 fs-4">
-        Read books, listen to audio books, watch videos, and do quizzes.
+        Books for everyone everyday everywhere.
       </p>
     </div>
   </div>
 
-  <div class="col-10 mx-auto col-lg-6">
+  <div class="mx-auto col-lg-6">
+    <div class="p-lg-5 border rounded-3 bg-light">
       <div class="form-floating mb-3">
         <input type="email"
                [(ngModel)]="registration.email"
@@ -48,5 +49,16 @@
               (click)="onSubmit(registration)"
               class="w-100 btn btn-lg btn-primary">Registration</button>
     <hr class="my-4">
+    <div class="alert alert-primary my-2">
+      <div>
+        Already have an account?
+        <a routerLink="/auth/login">Log in</a>
+      </div>
+      <div>
+        Forgot password?
+        <a routerLink="/auth/forgot-password">Recover password</a>
+      </div>
+    </div>
+  </div>
   </div>
 </div>

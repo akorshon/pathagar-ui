@@ -8,9 +8,9 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {SharedModule} from "./shared/shared.module";
 import {CommonModule} from "@angular/common";
 import {LoadingBarHttpClientModule} from "@ngx-loading-bar/http-client";
-import { ExamplePdfViewerComponent } from './example-pdf-viewer/example-pdf-viewer.component';
-import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import {NgxExtendedPdfViewerModule} from 'ngx-extended-pdf-viewer';
 import {AuthInterceptor} from "./auth/interceptor /auth.interceptor";
+import {FileSizePipe} from "./shared/pipe/file-size-pipe";
 
 @NgModule({
   imports: [
@@ -26,14 +26,14 @@ import {AuthInterceptor} from "./auth/interceptor /auth.interceptor";
 
   declarations: [
     AppComponent,
-    ExamplePdfViewerComponent
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
+    FileSizePipe
   ],
   bootstrap: [AppComponent]
 })

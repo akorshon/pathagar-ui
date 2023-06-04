@@ -8,11 +8,14 @@ export class Book {
     public coverImage: string,
     public filePath: string,
     public preview: string,
+    public totalPage: number,
+    public size: number,
+    public coverImagePage: number,
     public authors: Author[],
     public file: File) {
   }
 
   static empty(): Book {
-    return new Book('', '', '', '', '', '', [], new File([], ''));
+    return new Book('', '', '', '', '', '', 0, 0, 0,[], new File([], ''));
   }
 }

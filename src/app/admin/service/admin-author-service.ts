@@ -26,11 +26,12 @@ export class AdminAuthorService {
   }
 
   findById(id: string): Observable<any> {
-    return this.http.get(`${AdminAuthorService.URL}/id`);
+    return this.http.get(`${AdminAuthorService.URL}/${id}`);
   }
 
-  findAll(search: string): Observable<any> {
-    return this.http.get(`${AdminAuthorService.URL}?search=${search}`);
+  findAll(page: number, search: string): Observable<any> {
+    page = page - 1;
+    return this.http.get(`${AdminAuthorService.URL}?page=${page}&size=20&search=${search}`);
   }
 
   delete(id=''): Observable<any> {

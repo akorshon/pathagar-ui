@@ -8,17 +8,18 @@ import {NavigationEnd, Router} from "@angular/router";
 })
 export class SidebarComponent implements OnInit {
 
+  @Input()
+  layoutType!: string;
+
+  @Output()
+  collapsedEvent = new EventEmitter<boolean>();
+
   name!:  string;
   showMenu!: string;
   isActive!: boolean;
   collapsed!: boolean;
   pushRightClass!: string;
 
-  @Input()
-  layoutType!: string;
-
-  @Output()
-  collapsedEvent = new EventEmitter<boolean>();
 
   constructor(public router: Router) {
     this.router.events.subscribe((val) => {
@@ -63,7 +64,9 @@ export class SidebarComponent implements OnInit {
   }
 
   onLoggedOut() {
-    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('tokenData');
+    localStorage.removeItem('token');
+    this.router.navigate(['/auth/login']);
   }
 
 

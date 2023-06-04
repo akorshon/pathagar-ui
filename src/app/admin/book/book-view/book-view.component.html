@@ -1,0 +1,42 @@
+<div class="row bg-light">
+  <div class="col-3">
+    <div class="m-2 float-start">
+      <button class="btn btn-sm mx-1 btn-primary" (click)="zoomIn()">+</button>
+      <button class="btn btn-sm mx-1 btn-primary" (click)="zoomOut()">-</button>
+    </div>
+  </div>
+
+  <div class="col-6">
+    <div class="m-2 d-flex justify-content-center">
+      <button class="btn btn-sm mx-1 btn-primary"
+              (keydown)="prevPage()"
+              (click)="prevPage()">Prev</button>
+      <div class="m-1">{{ page }} / {{ totalPages }}</div>
+      <button class="btn btn-sm mx-1 btn-primary"
+              (keydown)="nextPage()"
+              (click)="nextPage()">Next</button>
+    </div>
+  </div>
+
+  <div class="col-3">
+    <div class="m-2">
+      <button class="btn btn-sm mx-1 btn-warning float-end" (click)="onClose()">X</button>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <pdf-viewer
+      [src]="fileUrl + book.filePath"
+      [show-all]="false"
+      (after-load-complete)="afterLoadComplete($event)"
+      [page]="page"
+      [zoom]="zoom"
+      [autoresize]="true"
+      [fit-to-page]="true"
+      [original-size]="false"
+      (pageChange)="onPageChange($event)">
+    </pdf-viewer>
+  </div>
+</div>

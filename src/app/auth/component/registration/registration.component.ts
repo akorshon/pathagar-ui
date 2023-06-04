@@ -27,7 +27,7 @@ export class RegistrationComponent implements OnInit {
     this.submitted = true;
     this.authService.registration(registration).subscribe({
       next: () => {
-
+        this.router.navigate(['auth/login']);
       }, error: (err) => {
 
       }, complete: () => {

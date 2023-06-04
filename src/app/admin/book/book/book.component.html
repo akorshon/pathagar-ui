@@ -1,0 +1,77 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">Book</div>
+      <div class="card-body">
+
+        <div class="form-group m-2">
+          <label>Cover</label>
+          <div>
+            <img [src]="fileUrl + book.coverImage" alt="{{book.name}}">
+          </div>
+        </div>
+
+        <div class="form-group m-2">
+          <label>Name</label>
+          <input type="text" class="form-control form-control-sm" [(ngModel)]="book.name">
+        </div>
+
+        <div class="form-group m-2">
+          <label>Authors</label>
+          <ng-select [(ngModel)]="book.authors"
+                     [items]="authors | async"
+                     (add)="updateAuthor($event, 'add')"
+                     (remove)="updateAuthor($event.value, 'remove')"
+                     [loading]="authorLoading"
+                     [hideSelected]="true"
+                     [multiple]="true"
+                     [trackByFn]="trackByFn"
+                     [typeahead]="authorInput"
+                     bindLabel="name">
+          </ng-select>
+        </div>
+
+        <div class="form-group m-2">
+          <label>Description</label>
+          <textarea rows="7" class="form-control form-control-sm" [(ngModel)]="book.description"></textarea>
+        </div>
+
+        <div class="form-group m-2">
+          <label>Thumb page</label>
+          <div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" (change)="onUpdateThumb(book.coverImagePage)"  type="radio" [(ngModel)]="book.coverImagePage" name="coverImagePage" id="inlineRadio1" [value]="0">
+              <label class="form-check-label" for="inlineRadio1">0</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" (change)="onUpdateThumb(book.coverImagePage)" type="radio" [(ngModel)]="book.coverImagePage" name="coverImagePage" id="inlineRadio2" [value]="1">
+              <label class="form-check-label" for="inlineRadio2">1</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input"  (change)="onUpdateThumb(book.coverImagePage)" type="radio"  [(ngModel)]="book.coverImagePage" name="coverImagePage" id="inlineRadio3" [value]="2">
+              <label class="form-check-label" for="inlineRadio3">2</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" (change)="onUpdateThumb(book.coverImagePage)" type="radio" [(ngModel)]="book.coverImagePage" name="coverImagePage" id="inlineRadio4" [value]="3">
+              <label class="form-check-label" for="inlineRadio4">3</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" (change)="onUpdateThumb(book.coverImagePage)" type="radio" [(ngModel)]="book.coverImagePage" name="coverImagePage" id="inlineRadio5" [value]="4">
+              <label class="form-check-label" for="inlineRadio5">4</label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card-footer">
+        <button (click)="onDelete(book)" class="btn btn-sm btn-danger m-1 float-start">Delete</button>
+        <div class="float-end">
+          <button class="btn btn-sm btn-primary m-2" (click)="onSave(book)">Save</button>
+          <button class="btn btn-sm btn-warning m-2" (click)="onClose()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

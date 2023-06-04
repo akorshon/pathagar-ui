@@ -6,12 +6,12 @@ import {NavigationEnd, Router} from "@angular/router";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
-
-  public pushRightClass = 'push-right';
+export class HeaderComponent  {
 
   @Input()
   title = 'পাঠাগার';
+
+  public pushRightClass = 'push-right';
 
   constructor( public router: Router) {
     this.router.events.subscribe((val) => {
@@ -33,7 +33,10 @@ export class HeaderComponent {
   }
 
   onLoggedOut() {
-    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('token-data');
+    localStorage.removeItem('token');
+    this.router.navigate(['/auth/login']);
   }
+
 
 }

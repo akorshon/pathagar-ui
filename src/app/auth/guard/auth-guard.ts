@@ -16,19 +16,16 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
     console.log('auth-guard started ');
-    const tokenData = localStorage.getItem('token-data') as unknown as TokenData;
-    const userRoles = tokenData.roles;
-    if (userRoles == null) {
+    const tokenDataStr: string | null = localStorage.getItem('token-data');
+    if (tokenDataStr == null) {
       this.router.navigate(['/' + AuthGuard.LOGIN_URL], { queryParams: { returnUrl: state.url }});
       return false;
     }
 
-    /*
-    if (requiredRoles == null) {
-      return true;
-    }*/
-
+    const  tokenData: TokenData = JSON.parse(tokenDataStr);
+    const userRoles = tokenData.roles;
     const requiredRoles = route.data['requiredRoles'];
+
     const match = this.roleMatch(requiredRoles, userRoles);
     if (match) {
       return true;
