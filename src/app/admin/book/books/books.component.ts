@@ -5,7 +5,7 @@ import {AdminBookService} from "../../service/admin-book-service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Title} from "@angular/platform-browser";
 import {BookUploadComponent} from "../book-upload/book-upload.component";
-import {BookViewComponent} from "../book-view/book-view.component";
+import {BookViewComponent} from "../../../user/component/book-view/book-view.component";
 import {Page} from "../../../shared/model/page";
 import {BookComponent} from "../book/book.component";
 import {ActivatedRoute, Router} from "@angular/router";

@@ -3,12 +3,12 @@ import {Book} from "../../../shared/model/book";
 import {environment} from "../../../../environments/environment";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Title} from "@angular/platform-browser";
-import {BookUploadComponent} from "../book-upload/book-upload.component";
+import {BookUploadComponent} from "../../../admin/book/book-upload/book-upload.component";
 import {BookViewComponent} from "../book-view/book-view.component";
 import {Page} from "../../../shared/model/page";
-import {BookComponent} from "../book/book.component";
+import {BookComponent} from "../../../admin/book/book/book.component";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AdminUserBookService} from "../../service/admin-user--book-service";
+import {UserBookService} from "../../service/user--book-service";
 import {UserBook} from "../../../shared/model/user-book";
 
 @Component({
@@ -30,7 +30,7 @@ export class UserBookComponent implements OnInit {
     private router: Router,
     private ngbModal: NgbModal,
     private route: ActivatedRoute,
-    private adminUserBookService: AdminUserBookService) {
+    private adminUserBookService: UserBookService) {
 	}
 
 	ngOnInit(): void {

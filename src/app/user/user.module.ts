@@ -3,10 +3,11 @@ import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BookComponent} from "./component/book/book.component";
 import {UserRoutingModule} from "./user-routing.module";
-import {UserBookService} from "./service/user-book-service";
 import {NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
-import {FileSizePipe} from "../shared/pipe/file-size-pipe";
 import {AdminModule} from "../admin/admin.module";
+import {UserBookComponent} from "./component/user-book/user-book.component";
+import {BookViewComponent} from "./component/book-view/book-view.component";
+import {PdfViewerModule} from "ng2-pdf-viewer";
 
 
 @NgModule({
@@ -17,9 +18,12 @@ import {AdminModule} from "../admin/admin.module";
     UserRoutingModule,
     NgbPaginationModule,
     AdminModule,
+    PdfViewerModule,
   ],
   declarations: [
-    BookComponent
+    BookComponent,
+    UserBookComponent,
+    BookViewComponent,
   ],
   providers: [
 

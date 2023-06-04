@@ -54,5 +54,3 @@ case ${option} in
   "deploy") deploy ;;
 esac
 
-৪ -- ৩
-১ --- 4/3 * ২৪

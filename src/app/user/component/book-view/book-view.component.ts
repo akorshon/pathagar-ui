@@ -1,14 +1,13 @@
 import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {Book} from "../../../shared/model/book";
-import {AdminBookService} from "../../service/admin-book-service";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {Title} from "@angular/platform-browser";
 import {environment} from "../../../../environments/environment";
 import {UserBook} from "../../../shared/model/user-book";
-import {AdminUserBookService} from "../../service/admin-user--book-service";
+import {UserBookService} from "../../service/user--book-service";
 
 @Component({
-	selector: 'app-admin-book-view',
+	selector: 'app-user-book-view',
 	templateUrl: './book-view.component.html',
 	styleUrls: ['./book-view.component.scss']
 })
@@ -27,7 +26,7 @@ export class BookViewComponent implements OnInit {
   constructor(
     private title: Title,
     public ngbActiveModal: NgbActiveModal,
-    private userBookService: AdminUserBookService,) {
+    private userBookService: UserBookService,) {
 
 	}
 
@@ -37,11 +36,13 @@ export class BookViewComponent implements OnInit {
 
 
   onPageChange(pageNumber: number) {
-    console.log(pageNumber)
     this.userBook.page = pageNumber;
     this.userBook.book = this.book;
-    this.userBook.started = new Date();
-    this.userBook.status = 'READING';
+    if(pageNumber == this.totalPages) {
+      this.userBook.status = 'READ';
+    } else {
+      this.userBook.status = 'READING';
+    }
     this.userBookService.save(this.userBook).subscribe(resp => {
       this.userBook = resp;
     });
@@ -64,9 +65,9 @@ export class BookViewComponent implements OnInit {
   @HostListener("document:keydown", ["$event"])
   onKeyPress(event: KeyboardEvent) {
     if (event.key === 'ArrowRight') {
-      this.nextPage();
+
     } else if (event.key === 'ArrowLeft') {
-      this.prevPage();
+
     } else if (event.key === '+') {
       this.zoomIn();
     } else if (event.key === '-') {
@@ -83,20 +84,13 @@ export class BookViewComponent implements OnInit {
   }
 
   zoomIn() {
-    this.zoom = this.zoom + 0.20;
+    this.zoom = this.zoom + 0.10;
     localStorage.setItem(`zoom`, this.zoom.toString());
   }
 
   zoomOut() {
-    this.zoom = this.zoom - 0.20;
+    this.zoom = this.zoom - 0.10;
     localStorage.setItem(`zoom`, this.zoom.toString());
   }
-
-
-  /*@HostListener('window:scroll', ['$event'])
-  onScroll(event:any) {
-    console.log(event);
-  }*/
-
 
 }

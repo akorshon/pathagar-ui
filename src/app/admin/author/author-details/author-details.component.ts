@@ -6,7 +6,7 @@ import {NgbActiveModal, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Title} from "@angular/platform-browser";
 import {ActivatedRoute} from "@angular/router";
 import {Book} from "../../../shared/model/book";
-import {BookViewComponent} from "../../book/book-view/book-view.component";
+import {BookViewComponent} from "../../../user/component/book-view/book-view.component";
 import {BookComponent} from "../../book/book/book.component";
 
 @Component({

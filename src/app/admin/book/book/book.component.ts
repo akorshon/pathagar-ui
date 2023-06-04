@@ -7,8 +7,7 @@ import {environment} from "../../../../environments/environment";
 import {Author} from "../../../shared/model/author";
 import {AdminAuthorService} from "../../service/admin-author-service";
 import {catchError, concat, distinctUntilChanged, map, Observable, of, Subject, switchMap, tap} from "rxjs";
-import {FileType} from "../../../shared/model/file-type";
-import {AdminUserBookService} from "../../service/admin-user--book-service";
+import {UserBookService} from "../../../user/service/user--book-service";
 
 @Component({
 	selector: 'app-admin-book',
@@ -28,7 +27,7 @@ export class BookComponent implements OnInit {
     private title: Title,
     public ngbActiveModal: NgbActiveModal,
     private authorService: AdminAuthorService,
-    private userBookService: AdminUserBookService,
+    private userBookService: UserBookService,
     private adminBookService: AdminBookService) {
       this.title.setTitle('BOOK | PATHAGAR ');
 	}
@@ -89,7 +88,7 @@ export class BookComponent implements OnInit {
 
 
   onUpdateThumb(page: number) {
-    this.userBookService.updateThumb(this.book.id, page).subscribe(resp => {
+    this.adminBookService.updateThumb(this.book.id, page).subscribe(resp => {
       this.book = resp;
       this.book.coverImage = this.book.coverImage + "?" + new Date().getTime();
     });

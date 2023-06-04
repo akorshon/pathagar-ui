@@ -37,6 +37,11 @@ export class AdminBookService {
     return this.http.get(`${AdminBookService.URL}/${id}`);
   }
 
+
+  updateThumb(bookId: string, page: number): Observable<any> {
+    return this.http.post(`${AdminBookService.URL}/${bookId}/thumb/${page}`, {});
+  }
+
   delete(id=''): Observable<any> {
     return this.http.delete(`${AdminBookService.URL}/${id}`);
   }

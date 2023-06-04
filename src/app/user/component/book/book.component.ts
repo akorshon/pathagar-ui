@@ -3,8 +3,8 @@ import {environment} from "../../../../environments/environment";
 import {Book} from "../../../shared/model/book";
 import {UserBookService} from "../../service/user-book-service";
 import {Page} from "../../../shared/model/page";
-import {BookViewComponent} from "../../../admin/book/book-view/book-view.component";
-import {Router} from "@angular/router";
+import {BookViewComponent} from "../book-view/book-view.component";
+import {ActivatedRoute, Router} from "@angular/router";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
@@ -24,13 +24,16 @@ export class BookComponent implements OnInit {
 	constructor(
     private router: Router,
     private ngbModal: NgbModal,
+    private route: ActivatedRoute,
     private bookService: UserBookService) {
 	}
 
 	ngOnInit(): void {
-    this.bookService.findAll(1, '').subscribe((resp) => {
-			this.books = resp.content;
-		})
+    this.route.queryParams.subscribe((params: any) => {
+      this.pageNumber = params.page ? params.page : 1;
+      this.searchTerm = params.search ? params.search : '';
+    });
+    this.loadPage(this.pageNumber, this.searchTerm);
 	}
 
   onSearch(searchText: string) {
@@ -47,17 +50,6 @@ export class BookComponent implements OnInit {
     this.loadPage(this.pageNumber, this.searchTerm);
   }
 
-  private loadPage(pageNumber: number, searchText?: string) {
-    console.log('loadPage' + pageNumber);
-    this.bookService.findAll(pageNumber, searchText).subscribe(resp => {
-      this.addToUrl({'page': pageNumber, 'search': searchText});
-      this.books = resp.content;
-      if(this.loadInit) {
-        this.loadInit = false;
-        this.page = new Page(pageNumber, resp.numberOfElements, resp.totalElements, resp.totalPages, resp.first, resp.last);
-      }
-    });
-  }
 
   onRead(book: Book) {
     const modalRef = this.ngbModal.open(BookViewComponent , {
@@ -76,6 +68,18 @@ export class BookComponent implements OnInit {
     this.router.navigate([], {
       queryParams: params,
       queryParamsHandling: 'merge',
+    });
+  }
+
+  private loadPage(pageNumber: number, searchText?: string) {
+    console.log('loadPage' + pageNumber);
+    this.bookService.findAll(pageNumber, searchText).subscribe(resp => {
+      this.addToUrl({'page': pageNumber, 'search': searchText});
+      this.books = resp.content;
+      if(this.loadInit) {
+        this.loadInit = false;
+        this.page = new Page(pageNumber, resp.numberOfElements, resp.totalElements, resp.totalPages, resp.first, resp.last);
+      }
     });
   }
 }
