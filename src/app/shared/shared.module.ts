@@ -8,6 +8,7 @@ import {RouterLinkActive, RouterLinkWithHref, RouterOutlet} from "@angular/route
 import {NgbCollapseModule, NgbDropdownModule} from "@ng-bootstrap/ng-bootstrap";
 import {CommonModule} from "@angular/common";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {FileSizePipe} from "./pipe/file-size-pipe";
 
 @NgModule({
     imports: [
@@ -25,10 +26,12 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
     AuthLayoutComponent,
     AdminLayoutComponent,
     UserLayoutComponent,
+    FileSizePipe,
   ],
   providers: [
   ],
   exports: [
+    FileSizePipe,
   ],
 })
 export class SharedModule { }

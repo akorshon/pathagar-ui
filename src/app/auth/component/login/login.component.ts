@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../../service/auth.service";
 import jwtDecode from "jwt-decode";
 import {TokenData} from "../../model/token-data";
+import {Exception} from "../../../shared/model/exception";
 
 @Component({
   templateUrl: 'login.component.html',
@@ -12,13 +13,10 @@ import {TokenData} from "../../model/token-data";
 })
 export class LoginComponent  implements OnInit {
   login = new Login('', '');
-  returnUrl!: string;
   loading = false;
   submitted = false;
-  error = '';
-  isLoggedIn = false;
-  isLoginFailed = false;
-  roles: string[] = [];
+  error: Exception | undefined;
+
 
   constructor(
     private title: Title,
@@ -39,8 +37,7 @@ export class LoginComponent  implements OnInit {
 
   onSubmit(login: Login) {
     this.submitted = true;
-    this.authService.login(login)
-      .subscribe({
+    this.authService.login(login).subscribe({
         next: (resp) => {
           const tokenData =  jwtDecode<TokenData>(resp.token);
           localStorage.setItem('token', resp.token);
@@ -49,10 +46,11 @@ export class LoginComponent  implements OnInit {
         },
         error: (err) => {
           console.log(err);
+          this.error = err.error;
+          this.loading = false;
+          this.submitted = false;
         }}
-      ).add(() => {
-        this.loading = false;
-      })
+      );
   }
 
   private redirectToReturnUrl(tokenData: TokenData) {

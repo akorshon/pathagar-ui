@@ -1,15 +1,7 @@
 <div class="card">
-  <div class="card-header">Author management</div>
+  <div class="card-header">Authors</div>
 
   <div class="card-body ">
-    <div class="row">
-      <div class="col-sm-12">
-        <button (click)="onOpenAuthorModal()" class="btn  btn-outline-primary me-2">Add new author</button>
-      </div>
-    </div>
-
-
-
     <div class="row">
       <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 my-2 d-flex align-items-stretch" *ngFor="let author of authors; let i=index">
         <div class="card border-0">
@@ -18,10 +10,6 @@
               <img [src]="fileUrl + author.thumbnailPath" class="rounded img-fluid" alt="{{author.name}}">
             </picture>
             <p>{{author.name}}</p>
-          </div>
-
-          <div class="card-footer border-0">
-            <button (click)="onEdit(author, i)" class="btn btn-sm btn-warning m-1">Edit</button>
           </div>
 
         </div>

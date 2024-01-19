@@ -15,6 +15,12 @@ export class AdminFileService {
     private http: HttpClient) {
   }
 
+  updateBook(id: string, file: File): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+    return this.http.put(`${AdminFileService.URL}/book/${id}`, formData);
+  }
+
   uploadBook(file: File, fileType: FileType): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('file', file);
@@ -22,9 +28,10 @@ export class AdminFileService {
     return this.http.post(`${AdminFileService.URL}/book`, formData);
   }
 
-  uploadAuthor(file: File, fileType: FileType): Observable<any> {
+  uploadAuthor(file: File, fileType: FileType, name: string): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('file', file);
+    formData.append('name', name);
     formData.append('fileType', fileType);
     return this.http.post(`${AdminFileService.URL}/author`, formData);
   }

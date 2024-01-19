@@ -22,7 +22,12 @@
       <span>Authors</span>
     </a>
 
-    <a [routerLinkActive]="['router-link-active']" class="list-group-item" routerLink="/admin/user-book" *ngIf="layoutType=='admin'">
+    <a [routerLinkActive]="['router-link-active']" class="list-group-item" routerLink="/user/author" *ngIf="layoutType=='user'">
+      <i class="fa fa-user-edit"></i> &nbsp;
+      <span>Authors</span>
+    </a>
+
+    <a [routerLinkActive]="['router-link-active']" class="list-group-item" routerLink="/user/user-book"å>
       <i class="fa fa-book-open"></i> &nbsp;
       <span>My Books</span>
     </a>

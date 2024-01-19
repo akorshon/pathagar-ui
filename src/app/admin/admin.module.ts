@@ -15,7 +15,7 @@ import {AuthorComponent} from "./author/author/author.component";
 import {NgxExtendedPdfViewerModule} from "ngx-extended-pdf-viewer";
 import {SettingComponent} from "./setting/setting.component";
 import {FileSizePipe} from "../shared/pipe/file-size-pipe";
-import {AuthorDetailsComponent} from "./author/author-details/author-details.component";
+import {SharedModule} from "../shared/shared.module";
 
 
 @NgModule({
@@ -28,6 +28,7 @@ import {AuthorDetailsComponent} from "./author/author-details/author-details.com
     NgbModule,
     NgSelectModule,
     NgxExtendedPdfViewerModule,
+    SharedModule,
   ],
   declarations: [
     DashboardComponent,
@@ -35,18 +36,15 @@ import {AuthorDetailsComponent} from "./author/author-details/author-details.com
     AuthorUploadComponent,
     AuthorComponent,
     AuthorsComponent,
-    AuthorDetailsComponent,
 
     BookComponent,
     BooksComponent,
     BookUploadComponent,
 
-
     SettingComponent,
-    FileSizePipe,
   ],
   exports: [
-    FileSizePipe
+
   ],
   providers: []
 })

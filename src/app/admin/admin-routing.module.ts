@@ -4,14 +4,12 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 import {BooksComponent} from "./book/books/books.component";
 import {AuthorsComponent} from "./author/authors/authors.component";
 import {SettingComponent} from "./setting/setting.component";
-import {AuthorDetailsComponent} from "./author/author-details/author-details.component";
 
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full'
+    component: DashboardComponent,
   },
   {
     path: 'dashboard',
@@ -20,10 +18,6 @@ export const routes: Routes = [
   {
     path: 'authors',
     component: AuthorsComponent,
-  },
-  {
-    path: 'authors/:id',
-    component: AuthorDetailsComponent,
   },
   {
     path: 'book',

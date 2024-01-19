@@ -38,6 +38,11 @@
               class="w-100 btn btn-lg btn-primary" >Log in</button>
       <hr class="my-4">
 
+      <div *ngIf="error">
+        <div class="alert alert-danger" *ngFor="let error of error.errors">
+          {{error}}
+        </div>
+      </div>
 
     <div class="alert alert-primary my-2">
       <div>

@@ -5,8 +5,8 @@ export class Author {
     public id: string,
     public name: string,
     public description: string,
-    public thumbnail: string,
-    public image: string,
+    public thumbnailPath: string,
+    public imagePath: string,
     public preview: string,
     public books: Book[],
     public file: File) {

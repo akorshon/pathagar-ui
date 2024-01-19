@@ -8,6 +8,7 @@ import {Author} from "../../../shared/model/author";
 import {AdminAuthorService} from "../../service/admin-author-service";
 import {catchError, concat, distinctUntilChanged, map, Observable, of, Subject, switchMap, tap} from "rxjs";
 import {UserBookService} from "../../../user/service/user--book-service";
+import {AdminFileService} from "../../service/admin-file-service";
 
 @Component({
 	selector: 'app-admin-book',
@@ -18,6 +19,7 @@ export class BookComponent implements OnInit {
 
   @Input()
   book!: Book;
+
   authorLoading = false;
   authors!: Observable<Author[]>;
   fileUrl = environment.backendUrl + '/api/public/files/';
@@ -28,6 +30,7 @@ export class BookComponent implements OnInit {
     public ngbActiveModal: NgbActiveModal,
     private authorService: AdminAuthorService,
     private userBookService: UserBookService,
+    private adminFileService: AdminFileService,
     private adminBookService: AdminBookService) {
       this.title.setTitle('BOOK | PATHAGAR ');
 	}
@@ -92,6 +95,25 @@ export class BookComponent implements OnInit {
       this.book = resp;
       this.book.coverImage = this.book.coverImage + "?" + new Date().getTime();
     });
+  }
+
+
+  selectBook(event: any): void {
+    this.adminFileService.updateBook(this.book.id, event?.target?.files[0]).subscribe({
+      next: (resp) => {
+        console.log('success');
+        this.book = resp;
+      },
+      error: (error) => {
+        console.log('error');
+        console.log(error);
+      }
+    });
+  }
+
+  onClickFileInputButton(id: string) {
+    const fileInput = document.getElementById(id) as HTMLElement;
+    fileInput.click();
   }
 
   protected readonly Date = Date;

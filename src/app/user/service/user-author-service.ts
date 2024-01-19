@@ -2,36 +2,26 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
-import {Book} from "../../shared/model/book";
-import {Author} from "../../shared/model/author";
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class UserAuthorService {
 
-  public static  URL = environment.backendUrl + "/api/admin/authors/";
+  public static  URL = environment.backendUrl + "/api/user/authors";
 
   constructor(
     private http: HttpClient) {
   }
 
-  save(author: Author): Observable<any> {
-    if(author.id) {
-      return this.http.put(UserAuthorService.URL, author);
-    } else {
-      return this.http.post(UserAuthorService.URL, author);
-    }
-  }
 
   findById(id: string): Observable<any> {
-    return this.http.get(UserAuthorService.URL + id);
+    return this.http.get(`${UserAuthorService.URL}/${id}`);
   }
 
-  findAll(): Observable<any> {
-    return this.http.get(UserAuthorService.URL);
-  }
-
-  delete(id=''): Observable<any> {
-    return this.http.delete(UserAuthorService.URL + id);
+  findAll(page: number, search: string): Observable<any> {
+    page = page - 1;
+    return this.http.get(`${UserAuthorService.URL}?page=${page}&size=20&search=${search}`);
   }
 }

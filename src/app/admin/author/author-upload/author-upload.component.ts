@@ -41,7 +41,7 @@ export class AuthorUploadComponent implements OnInit {
     console.log('on submit');
     let count = 0;
     for (let i = 0; i < this.authors.length; i++) {
-      this.adminFileService.uploadAuthor(this.authors[i].file, FileType.AUTHOR_IMAGE).subscribe({
+      this.adminFileService.uploadAuthor(this.authors[i].file, FileType.AUTHOR_IMAGE, authors[i].name).subscribe({
         next: (resp) => {
           console.log(resp);
         },
