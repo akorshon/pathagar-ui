@@ -1,16 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {Author} from "../author";
+import {Author} from "../../author/author";
 import {environment} from "../../../../environments/environment";
-import {AdminAuthorService} from "../admin-author-service";
+import {AdminAuthorService} from "../../author/admin-author-service";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {Title} from "@angular/platform-browser";
 
 @Component({
-	selector: 'app-admin-author-upload',
-	templateUrl: './author.component.html',
-	styleUrls: ['./author.component.scss']
+	selector: 'app-admin-category-upload',
+	templateUrl: './category.component.html',
+	styleUrls: ['./category.component.scss']
 })
-export class AuthorComponent implements OnInit {
+export class CategoryComponent implements OnInit {
 
   submitted = false;
   author = Author.empty();

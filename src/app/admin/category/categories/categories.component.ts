@@ -1,20 +1,20 @@
 import {Component, OnInit} from '@angular/core';
-import {Author} from "../author";
+import {Author} from "../../author/author";
 import {environment} from "../../../../environments/environment";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Title} from "@angular/platform-browser";
-import {AuthorUploadComponent} from "../author-upload/author-upload.component";
-import {AdminAuthorService} from "../admin-author-service";
+import {CategoryUploadComponent} from "../category-upload/category-upload.component";
 import {Page} from "../../../shared/model/page";
-import {AuthorComponent} from "../author/author.component";
+import {CategoryComponent} from "../category/category.component";
 import {ActivatedRoute, Router} from "@angular/router";
+import {AdminCategoryService} from "../admin-category-service";
 
 @Component({
-	selector: 'app-admin-authors',
-	templateUrl: './authors.component.html',
-	styleUrls: ['./authors.component.scss']
+	selector: 'app-admin-categories',
+	templateUrl: './categories.component.html',
+	styleUrls: ['./categories.component.scss']
 })
-export class AuthorsComponent implements OnInit {
+export class CategoriesComponent implements OnInit {
 
   searchTerm: string = '';
   pageNumber = 1;
@@ -28,7 +28,7 @@ export class AuthorsComponent implements OnInit {
     private router: Router,
     private ngbModal: NgbModal,
     private route: ActivatedRoute,
-    private adminAuthorService: AdminAuthorService) {
+    private adminCategoryService: AdminCategoryService) {
 	}
 
 	ngOnInit(): void {
@@ -41,7 +41,7 @@ export class AuthorsComponent implements OnInit {
 	}
 
   loadAuthors(pageNumber:number, search: string) {
-    this.adminAuthorService.findAll(pageNumber, search).subscribe(resp => {
+    this.adminCategoryService.findAll(pageNumber, search).subscribe(resp => {
       this.authors = resp.content;
       if(this.loadInit) {
         this.loadInit = false;
@@ -50,8 +50,8 @@ export class AuthorsComponent implements OnInit {
     });
   }
 
-  onOpenAuthorModal() {
-    const modalRef = this.ngbModal.open(AuthorUploadComponent, {
+  onOpenModal() {
+    const modalRef = this.ngbModal.open(CategoryUploadComponent, {
       size: 'xl',
       backdrop: 'static'
     });
@@ -67,7 +67,7 @@ export class AuthorsComponent implements OnInit {
 	}
 
   onEdit(author: Author, index: number) {
-    const modalRef = this.ngbModal.open(AuthorComponent, {
+    const modalRef = this.ngbModal.open(CategoryComponent, {
       size: 'lg',
       backdrop: 'static'
     });

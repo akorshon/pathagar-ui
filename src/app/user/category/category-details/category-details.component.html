@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-header">{{category.name}}</div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 my-2 d-flex align-items-stretch"
+           *ngFor="let book of category.books; let i=index">
+        <div class="card border-0">
+          <div class="card-body d-flex justify-content-center">
+            <div>
+              <picture class="">
+                <img [src]="fileUrl + book.coverImage" class="rounded img-fluid" alt="{{book.name}}"
+                     (click)="onRead(book)">
+              </picture>
+
+              <div class="mt-2 fs-5">{{book.name}}</div>
+              <div class="" *ngIf="book.authors.length > 0">{{book.authors[0].name}}</div>
+              <div class="small">Page: {{book.totalPage}} & Size: {{book.size | filesize}}</div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

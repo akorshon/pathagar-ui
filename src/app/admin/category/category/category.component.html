@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-sm-12">
+<div class="card">
+  <div class="card-header">Author</div>
+  <div class="card-body">
+
+    <div class="row">
+      <div class="col-sm-12">
+
+        <div class="mb-3">
+          <label>Image</label>
+          <div>
+            <img [src]="fileUrl + author.thumbnailPath" alt="{{author.name}}">
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Name</label>
+          <input type="text" class="form-control" [(ngModel)]="author.name">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <textarea rows="7" class="form-control" [(ngModel)]="author.description"></textarea>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+    <div class="card-footer">
+      <button class="float-start btn-sm btn btn-danger m-2" (click)="onDelete(author)">Delete</button>
+      <div class="float-end">
+        <button class="float-end btn-sm btn btn-warning m-2" (click)="onCancel()">Close</button>
+        <button [disabled]="submitted"
+                (click)="onSubmit(author)"
+                class="btn btn-sm btn m-2 btn-success">Save
+        </button>
+      </div>
+    </div>
+</div>
+</div>
+
+</div>

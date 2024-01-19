@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {AdminLayoutComponent} from "./shared/component/admin-layout/admin-layout.component";
-import {AuthLayoutComponent} from "./shared/component/auth-layout/auth-layout.component";
+import {AdminLayoutComponent} from "./shared/layout/admin-layout/admin-layout.component";
+import {AuthLayoutComponent} from "./shared/layout/auth-layout/auth-layout.component";
 import {RoleType} from "./auth/model/role-type";
 import {AuthGuard} from "./auth/guard/auth-guard";
-import {UserLayoutComponent} from "./shared/component/user-layout/user-layout.component";
+import {UserLayoutComponent} from "./shared/layout/user-layout/user-layout.component";
 
 const routes: Routes = [
   {

@@ -1,29 +1,28 @@
 import {Component, OnInit} from '@angular/core';
-import {Author} from "../author";
+import {Author} from "../../author/author";
 import {environment} from "../../../../environments/environment";
-import {AdminAuthorService} from "../admin-author-service";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {Title} from "@angular/platform-browser";
 import {AdminFileService} from "../../service/admin-file-service";
 import {FileType} from "../../../shared/model/file-type";
+import {Category} from "../category";
 
 @Component({
-	selector: 'app-admin-author-upload',
-	templateUrl: './author-upload.component.html',
-	styleUrls: ['./author-upload.component.scss']
+	selector: 'app-admin-category-upload',
+	templateUrl: './category-upload.component.html',
+	styleUrls: ['./category-upload.component.scss']
 })
-export class AuthorUploadComponent implements OnInit {
+export class CategoryUploadComponent implements OnInit {
 
   submitted = false;
   selectedFiles = new Array<File>();
-  authors =  new Array<Author>();
+  categories =  new Array<Category>();
   fileUrl = environment.backendUrl + '/api/public/files/';
 
   constructor(
     private title: Title,
     public ngbActiveModal: NgbActiveModal,
-    private adminFileService: AdminFileService,
-    private adminAuthorService: AdminAuthorService) {
+    private adminFileService: AdminFileService) {
 	}
 
 	ngOnInit(): void {
@@ -37,11 +36,11 @@ export class AuthorUploadComponent implements OnInit {
 	}
 
 
-	onSubmit(authors: Author[]) {
+	onSubmit(categories: Category[]) {
     console.log('on submit');
     let count = 0;
-    for (let i = 0; i < this.authors.length; i++) {
-      this.adminFileService.uploadAuthor(this.authors[i].file, FileType.AUTHOR_IMAGE, authors[i].name).subscribe({
+    for (let i = 0; i < this.categories.length; i++) {
+      this.adminFileService.uploadCategory(this.categories[i].file, FileType.CATEGORY_IMAGE, categories[i].name).subscribe({
         next: (resp) => {
           console.log(resp);
         },
@@ -56,7 +55,7 @@ export class AuthorUploadComponent implements OnInit {
   }
 
   onFinishUpload(count: number) {
-    if(count === this.authors.length) {
+    if(count === this.categories.length) {
       this.ngbActiveModal.close(null);
     }
   }
@@ -66,7 +65,7 @@ export class AuthorUploadComponent implements OnInit {
 	}
 
   onRemove(index: number) {
-    this.authors.splice(index, 1);
+    this.categories.splice(index, 1);
   }
 
   onSelectImage(event: any): void {
@@ -82,7 +81,7 @@ export class AuthorUploadComponent implements OnInit {
         author.file =  event?.target?.files[i];
         // @ts-ignore
         author.name = this.selectedFiles[i].name.replace(/\.[^/.]+$/, "").replace(/_/g, " ");
-        this.authors.push(author);
+        this.categories.push(author);
       };
 
     }

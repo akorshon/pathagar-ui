@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
-import {Book} from "../../../shared/model/book";
-import {Author} from "../../../shared/model/author";
+import {Book} from "../book";
+import {Author} from "../../author/author";
 import {environment} from "../../../../environments/environment";
-import {AdminBookService} from "../../service/admin-book-service";
-import {AdminAuthorService} from "../../service/admin-author-service";
+import {AdminBookService} from "../admin-book-service";
+import {AdminAuthorService} from "../../author/admin-author-service";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {AdminFileService} from "../../service/admin-file-service";
 import {FileType} from "../../../shared/model/file-type";
@@ -47,7 +47,7 @@ export class BookUploadComponent {
     console.log('on submit');
     let count = 0;
     for (let i = 0; i < this.books.length; i++) {
-      this.adminFileService.uploadBook(this.books[i].file, FileType.BOOK).subscribe({
+      this.adminFileService.uploadBook(this.books[i].file, FileType.BOOK, books[i].name).subscribe({
         next: (resp) => {
           console.log('success');
           this.uplodedBooks.push(resp);

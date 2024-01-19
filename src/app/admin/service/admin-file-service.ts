@@ -21,9 +21,10 @@ export class AdminFileService {
     return this.http.put(`${AdminFileService.URL}/book/${id}`, formData);
   }
 
-  uploadBook(file: File, fileType: FileType): Observable<any> {
+  uploadBook(file: File, fileType: FileType, name: string): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('file', file);
+    formData.append('name', name);
     formData.append('fileType', fileType);
     return this.http.post(`${AdminFileService.URL}/book`, formData);
   }
@@ -34,5 +35,13 @@ export class AdminFileService {
     formData.append('name', name);
     formData.append('fileType', fileType);
     return this.http.post(`${AdminFileService.URL}/author`, formData);
+  }
+
+  uploadCategory(file: File, fileType: FileType, name: string): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+    formData.append('name', name);
+    formData.append('fileType', fileType);
+    return this.http.post(`${AdminFileService.URL}/category`, formData);
   }
 }

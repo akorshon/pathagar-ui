@@ -4,6 +4,7 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 import {BooksComponent} from "./book/books/books.component";
 import {AuthorsComponent} from "./author/authors/authors.component";
 import {SettingComponent} from "./setting/setting.component";
+import {CategoriesComponent} from "./category/categories/categories.component";
 
 
 export const routes: Routes = [
@@ -18,6 +19,10 @@ export const routes: Routes = [
   {
     path: 'authors',
     component: AuthorsComponent,
+  },
+  {
+    path: 'categories',
+    component: CategoriesComponent,
   },
   {
     path: 'book',

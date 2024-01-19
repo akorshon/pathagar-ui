@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Location} from "@angular/common";
-import {SettingService} from "../service/setting.service";
+import {SettingService} from "./setting.service";
 
 @Component({
   selector: 'app-admin-setting',

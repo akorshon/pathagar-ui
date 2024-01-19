@@ -1,14 +1,16 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Book} from "../../../shared/model/book";
-import {AdminBookService} from "../../service/admin-book-service";
+import {Book} from "../book";
+import {AdminBookService} from "../admin-book-service";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {Title} from "@angular/platform-browser";
 import {environment} from "../../../../environments/environment";
-import {Author} from "../../../shared/model/author";
-import {AdminAuthorService} from "../../service/admin-author-service";
+import {Author} from "../../author/author";
+import {AdminAuthorService} from "../../author/admin-author-service";
 import {catchError, concat, distinctUntilChanged, map, Observable, of, Subject, switchMap, tap} from "rxjs";
-import {UserBookService} from "../../../user/service/user--book-service";
+import {UserBookService} from "../../../user/book/user--book-service";
 import {AdminFileService} from "../../service/admin-file-service";
+import {Category} from "../../category/category";
+import {AdminCategoryService} from "../../category/admin-category-service";
 
 @Component({
 	selector: 'app-admin-book',
@@ -21,23 +23,30 @@ export class BookComponent implements OnInit {
   book!: Book;
 
   authorLoading = false;
+  categoryLoading = false;
   authors!: Observable<Author[]>;
+  categories!: Observable<Category[]>;
   fileUrl = environment.backendUrl + '/api/public/files/';
+
   authorInput = new Subject<string>();
+  categoryInput = new Subject<string>();
 
 	constructor(
     private title: Title,
     public ngbActiveModal: NgbActiveModal,
     private authorService: AdminAuthorService,
-    private userBookService: UserBookService,
+    private categoryService: AdminCategoryService,
     private adminFileService: AdminFileService,
     private adminBookService: AdminBookService) {
       this.title.setTitle('BOOK | PATHAGAR ');
 	}
 
   ngOnInit(): void {
-    this.book.coverImage = this.book.coverImage + "?" + new Date().getTime();
+    this.adminBookService.findById(this.book.id).subscribe(resp => {
+      this.book = resp;
+    });
     this.loadAuthor();
+    this.loadCategory();
   }
 
   onSave(book: Book) {
@@ -60,6 +69,12 @@ export class BookComponent implements OnInit {
     });
   }
 
+  updateCategory(category: Category, action: string) {
+    console.log(category);
+    this.adminBookService.updateCategory(this.book.id, category.id, action).subscribe(resp => {
+    });
+  }
+
 
   trackByFn(author: Author) {
     return author.id;
@@ -75,6 +90,21 @@ export class BookComponent implements OnInit {
           map(resp => resp.content),
           catchError(() => of([])), // empty list on error
           tap(() => this.authorLoading = false)
+        ))
+      )
+    );
+  }
+
+  private loadCategory() {
+    this.categories = concat(
+      of([]), // default items
+      this.categoryInput.pipe(
+        distinctUntilChanged(),
+        tap(() => this.categoryLoading = true),
+        switchMap(term => this.categoryService.findAll(0, term).pipe(
+          map(resp => resp.content),
+          catchError(() => of([])), // empty list on error
+          tap(() => this.categoryLoading = false)
         ))
       )
     );

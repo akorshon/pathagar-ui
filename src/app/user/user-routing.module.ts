@@ -1,9 +1,12 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from "@angular/core";
-import {BookComponent} from "./component/book/book.component";
-import {UserBookComponent} from "./component/user-book/user-book.component";
-import {AuthorsComponent} from "./component/authors/authors.component";
-import {AuthorDetailsComponent} from "./component/author-details/author-details.component";
+import {BookComponent} from "./book/book/book.component";
+import {UserBookComponent} from "./book/user-book/user-book.component";
+import {AuthorsComponent} from "./author/authors/authors.component";
+import {AuthorDetailsComponent} from "./author/author-details/author-details.component";
+import {CategoriesComponent} from "./category/categories/categories.component";
+import {CategoryComponent} from "../admin/category/category/category.component";
+import {CategoryDetailsComponent} from "./category/category-details/category-details.component";
 
 
 export const routes: Routes = [
@@ -27,6 +30,15 @@ export const routes: Routes = [
     path: 'author/:id',
     component: AuthorDetailsComponent,
   },
+  {
+    path: 'category',
+    component: CategoriesComponent,
+  },
+  {
+    path: 'category/:id',
+    component: CategoryDetailsComponent
+  },
+
 ];
 
 @NgModule({

@@ -1,16 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {Author} from "../author";
+import {Author} from "../../../admin/author/author";
 import {environment} from "../../../../environments/environment";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Title} from "@angular/platform-browser";
-import {AuthorUploadComponent} from "../author-upload/author-upload.component";
-import {AdminAuthorService} from "../admin-author-service";
 import {Page} from "../../../shared/model/page";
-import {AuthorComponent} from "../author/author.component";
 import {ActivatedRoute, Router} from "@angular/router";
+import {UserAuthorService} from "../user-author-service";
 
 @Component({
-	selector: 'app-admin-authors',
+	selector: 'app-user-authors',
 	templateUrl: './authors.component.html',
 	styleUrls: ['./authors.component.scss']
 })
@@ -28,7 +26,7 @@ export class AuthorsComponent implements OnInit {
     private router: Router,
     private ngbModal: NgbModal,
     private route: ActivatedRoute,
-    private adminAuthorService: AdminAuthorService) {
+    private authorService: UserAuthorService) {
 	}
 
 	ngOnInit(): void {
@@ -41,7 +39,7 @@ export class AuthorsComponent implements OnInit {
 	}
 
   loadAuthors(pageNumber:number, search: string) {
-    this.adminAuthorService.findAll(pageNumber, search).subscribe(resp => {
+    this.authorService.findAll(pageNumber, search).subscribe(resp => {
       this.authors = resp.content;
       if(this.loadInit) {
         this.loadInit = false;
@@ -50,43 +48,13 @@ export class AuthorsComponent implements OnInit {
     });
   }
 
-  onOpenAuthorModal() {
-    const modalRef = this.ngbModal.open(AuthorUploadComponent, {
-      size: 'xl',
-      backdrop: 'static'
-    });
 
-    modalRef.result.then((result) => {
-      this.ngOnInit();
-    });
-  }
-
-	onClickFileInputButton(id: string) {
-		const fileInput = document.getElementById(id) as HTMLElement;
-		fileInput.click();
-	}
-
-  onEdit(author: Author, index: number) {
-    const modalRef = this.ngbModal.open(AuthorComponent, {
-      size: 'lg',
-      backdrop: 'static'
-    });
-    modalRef.componentInstance.author = author;
-
-    modalRef.result.then((result) => {
-      if(result.action == 'deleted') {
-        this.authors.splice(index, 1);
-      }
-    });
-  }
 
   onPageChange(pageNumber: any) {
-    console.log('onPageChange' + pageNumber);
     this.loadAuthors(pageNumber, '');
   }
 
-
   onAuthorDetails(author: Author) {
-    this.router.navigate(['/admin/authors', author.id]);
+    this.router.navigate(['/user/author', author.id]);
   }
 }
