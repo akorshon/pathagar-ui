@@ -86,7 +86,7 @@ export class AuthorsComponent implements OnInit {
   }
 
 
-  onAuthorDetails(author: Author) {
+  onDetails(author: Author) {
     this.router.navigate(['/admin/authors', author.id]);
   }
 }

@@ -7,12 +7,33 @@
     <div class="row">
       <div class="col-sm-12">
 
-        <div class="mb-3">
+        <div class="mb-3" *ngIf="!author.preview">
           <label>Image</label>
           <div>
             <img [src]="fileUrl + author.thumbnailPath" alt="{{author.name}}">
           </div>
         </div>
+
+        <div class="col-sm-4 my-2" *ngIf="author.preview">
+          <div class="card shadow-sm">
+            <img [src]="author.preview">
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="mb-3">
+              <input style="display: none" class="form-control" type="file" accept="image/*" id="formFileMultiple"
+                     (change)="onSelectImage($event)">
+              <button class="btn btn-primary" (click)="onClickFileInputButton('formFileMultiple')">
+                <i class="fa fa-upload"></i>
+                Upload author
+              </button>
+            </div>
+          </div>
+        </div>
+
 
         <div class="mb-3">
           <label class="form-label">Name</label>

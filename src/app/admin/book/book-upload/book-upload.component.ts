@@ -47,7 +47,7 @@ export class BookUploadComponent {
     console.log('on submit');
     let count = 0;
     for (let i = 0; i < this.books.length; i++) {
-      this.adminFileService.uploadBook(this.books[i].file, FileType.BOOK, books[i].name).subscribe({
+      this.adminFileService.uploadBook(this.books[i]).subscribe({
         next: (resp) => {
           console.log('success');
           this.uplodedBooks.push(resp);

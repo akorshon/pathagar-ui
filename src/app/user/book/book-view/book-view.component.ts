@@ -4,7 +4,7 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {Title} from "@angular/platform-browser";
 import {environment} from "../../../../environments/environment";
 import {UserBook} from "../user-book/user-book";
-import {UserBookService} from "../user--book-service";
+import {UserBookService} from "../user-book-service";
 
 @Component({
 	selector: 'app-user-book-view',
@@ -39,11 +39,12 @@ export class BookViewComponent implements OnInit {
     this.userBook.page = pageNumber;
     this.userBook.book = this.book;
     if(pageNumber == this.totalPages) {
-      this.userBook.status = 'READ';
+      this.userBook.status = 'FINISHED';
     } else {
       this.userBook.status = 'READING';
     }
     this.userBookService.save(this.userBook).subscribe(resp => {
+      console.log("update book page");
       this.userBook = resp;
     });
   }

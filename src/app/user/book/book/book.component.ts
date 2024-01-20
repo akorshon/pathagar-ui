@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {environment} from "../../../../environments/environment";
 import {Book} from "../../../admin/book/book";
-import {UserBookService} from "../user-book-service";
+import {BookService} from "../book-service";
 import {Page} from "../../../shared/model/page";
 import {BookViewComponent} from "../book-view/book-view.component";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -25,7 +25,7 @@ export class BookComponent implements OnInit {
     private router: Router,
     private ngbModal: NgbModal,
     private route: ActivatedRoute,
-    private bookService: UserBookService) {
+    private bookService: BookService) {
 	}
 
 	ngOnInit(): void {

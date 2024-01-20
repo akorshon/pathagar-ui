@@ -40,7 +40,7 @@ export class CategoryUploadComponent implements OnInit {
     console.log('on submit');
     let count = 0;
     for (let i = 0; i < this.categories.length; i++) {
-      this.adminFileService.uploadCategory(this.categories[i].file, FileType.CATEGORY_IMAGE, categories[i].name).subscribe({
+      this.adminFileService.uploadCategory(this.categories[i]).subscribe({
         next: (resp) => {
           console.log(resp);
         },

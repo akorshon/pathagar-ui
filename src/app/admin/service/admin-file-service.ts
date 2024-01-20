@@ -3,6 +3,9 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {FileType} from "../../shared/model/file-type";
+import {Author} from "../author/author";
+import {Category} from "../category/category";
+import {Book} from "../book/book";
 
 
 @Injectable({
@@ -15,33 +18,44 @@ export class AdminFileService {
     private http: HttpClient) {
   }
 
-  updateBook(id: string, file: File): Observable<any> {
+
+  uploadBook(book: Book): Observable<any> {
     const formData: FormData = new FormData();
-    formData.append('file', file);
-    return this.http.put(`${AdminFileService.URL}/book/${id}`, formData);
+    formData.append('file', book.file);
+    formData.append('name', book.name);
+    formData.append('description', book.description);
+    if(book.id) {
+      formData.append('id', book.id);
+      return this.http.put(`${AdminFileService.URL}/book`, formData);
+    } else {
+      return this.http.post(`${AdminFileService.URL}/book`, formData);
+    }
   }
 
-  uploadBook(file: File, fileType: FileType, name: string): Observable<any> {
+  uploadAuthor(author: Author): Observable<any> {
     const formData: FormData = new FormData();
-    formData.append('file', file);
-    formData.append('name', name);
-    formData.append('fileType', fileType);
-    return this.http.post(`${AdminFileService.URL}/book`, formData);
+    formData.append('file', author.file);
+    formData.append('name', author.name);
+    formData.append('description', author.description);
+
+    if(author.id) {
+      formData.append('id', author.id);
+      return this.http.put(`${AdminFileService.URL}/author`, formData);
+    } else {
+      return this.http.post(`${AdminFileService.URL}/author`, formData);
+    }
   }
 
-  uploadAuthor(file: File, fileType: FileType, name: string): Observable<any> {
+  uploadCategory(category: Category): Observable<any> {
     const formData: FormData = new FormData();
-    formData.append('file', file);
-    formData.append('name', name);
-    formData.append('fileType', fileType);
-    return this.http.post(`${AdminFileService.URL}/author`, formData);
-  }
-
-  uploadCategory(file: File, fileType: FileType, name: string): Observable<any> {
-    const formData: FormData = new FormData();
-    formData.append('file', file);
-    formData.append('name', name);
-    formData.append('fileType', fileType);
-    return this.http.post(`${AdminFileService.URL}/category`, formData);
+    formData.append('file', category.file);
+    formData.append('name', category.name);
+    formData.append('description', category.description);
+    if(category.id) {
+      formData.append('id', category.id);
+      return this.http.put(`${AdminFileService.URL}/category`, formData);
+    } else {
+      return this.http.post(`${AdminFileService.URL}/category`, formData);
+    }
   }
 }

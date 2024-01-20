@@ -8,11 +8,11 @@ import {BookViewComponent} from "../book-view/book-view.component";
 import {Page} from "../../../shared/model/page";
 import {BookComponent} from "../../../admin/book/book/book.component";
 import {ActivatedRoute, Router} from "@angular/router";
-import {UserBookService} from "../user--book-service";
+import {UserBookService} from "../user-book-service";
 import {UserBook} from "./user-book";
 
 @Component({
-	selector: 'app-admin-books',
+	selector: 'app-user-books',
 	templateUrl: './user-book.component.html',
 	styleUrls: ['./user-book.component.scss']
 })
@@ -30,7 +30,7 @@ export class UserBookComponent implements OnInit {
     private router: Router,
     private ngbModal: NgbModal,
     private route: ActivatedRoute,
-    private adminUserBookService: UserBookService) {
+    private userBookService: UserBookService) {
 	}
 
 	ngOnInit(): void {
@@ -39,12 +39,13 @@ export class UserBookComponent implements OnInit {
       this.pageNumber = params.page ? params.page : 1;
       this.searchTerm = params.search ? params.search : '';
     });
-    this.loadYourBooks(this.pageNumber, this.searchTerm);
+    this.loadUserBooks(this.pageNumber, this.searchTerm);
   }
 
-  private loadYourBooks(pageNumber: number, searchText?: string) {
+  private loadUserBooks(pageNumber: number, searchText?: string) {
     console.log('loadPage' + pageNumber);
-    this.adminUserBookService.findAll(pageNumber, searchText).subscribe(resp => {
+
+    this.userBookService.findAll(pageNumber, searchText).subscribe(resp => {
       this.addToUrl({'page': pageNumber, 'search': searchText});
       this.userBooks = resp.content;
       if(this.loadInit) {
@@ -79,19 +80,19 @@ export class UserBookComponent implements OnInit {
     this.pageNumber = 1;
     this.searchTerm = '';
     this.loadInit = true;
-    this.loadYourBooks(this.pageNumber, this.searchTerm);
+    this.loadUserBooks(this.pageNumber, this.searchTerm);
   }
 
   onSearch(searchText: string) {
     this.pageNumber = 1;
     this.searchTerm = searchText;
     this.loadInit = true;
-    this.loadYourBooks(this.pageNumber, this.searchTerm);
+    this.loadUserBooks(this.pageNumber, this.searchTerm);
   }
 
   onPageChange(pageNumber: any) {
     console.log('onPageChange' + pageNumber);
-    this.loadYourBooks(pageNumber, '');
+    this.loadUserBooks(pageNumber, '');
   }
 
 
@@ -111,7 +112,7 @@ export class UserBookComponent implements OnInit {
   }
 
   onDelete(book: Book, index: number) {
-    this.adminUserBookService.delete(book.id).subscribe((resp) => {
+    this.userBookService.delete(book.id).subscribe((resp) => {
       this.userBooks.splice(index, 1);
     });
   }

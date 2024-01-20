@@ -7,7 +7,7 @@ import {environment} from "../../../../environments/environment";
 import {Author} from "../../author/author";
 import {AdminAuthorService} from "../../author/admin-author-service";
 import {catchError, concat, distinctUntilChanged, map, Observable, of, Subject, switchMap, tap} from "rxjs";
-import {UserBookService} from "../../../user/book/user--book-service";
+import {UserBookService} from "../../../user/book/user-book-service";
 import {AdminFileService} from "../../service/admin-file-service";
 import {Category} from "../../category/category";
 import {AdminCategoryService} from "../../category/admin-category-service";
@@ -129,7 +129,7 @@ export class BookComponent implements OnInit {
 
 
   selectBook(event: any): void {
-    this.adminFileService.updateBook(this.book.id, event?.target?.files[0]).subscribe({
+    this.adminFileService.uploadBook(this.book).subscribe({
       next: (resp) => {
         console.log('success');
         this.book = resp;
