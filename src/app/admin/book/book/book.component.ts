@@ -7,7 +7,6 @@ import {environment} from "../../../../environments/environment";
 import {Author} from "../../author/author";
 import {AdminAuthorService} from "../../author/admin-author-service";
 import {catchError, concat, distinctUntilChanged, map, Observable, of, Subject, switchMap, tap} from "rxjs";
-import {UserBookService} from "../../../user/book/user-book-service";
 import {AdminFileService} from "../../service/admin-file-service";
 import {Category} from "../../category/category";
 import {AdminCategoryService} from "../../category/admin-category-service";
@@ -123,7 +122,7 @@ export class BookComponent implements OnInit {
   onUpdateThumb(page: number) {
     this.adminBookService.updateThumb(this.book.id, page).subscribe(resp => {
       this.book = resp;
-      this.book.coverImage = this.book.coverImage + "?" + new Date().getTime();
+      this.book.coverImage.path = this.book.coverImage + "?" + new Date().getTime();
     });
   }
 

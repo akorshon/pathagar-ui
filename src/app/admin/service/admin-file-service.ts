@@ -23,7 +23,6 @@ export class AdminFileService {
     const formData: FormData = new FormData();
     formData.append('file', book.file);
     formData.append('name', book.name);
-    formData.append('description', book.description);
     if(book.id) {
       formData.append('id', book.id);
       return this.http.put(`${AdminFileService.URL}/book`, formData);

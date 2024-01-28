@@ -95,6 +95,9 @@ export class UserBookComponent implements OnInit {
     this.loadUserBooks(pageNumber, '');
   }
 
+  onWriteReview(book: Book, index: number) {
+
+  }
 
   onEdit(book: Book, index: number) {
     const  modalRef = this.ngbModal.open(BookComponent, {

@@ -1,12 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Author} from "../../../admin/author/author";
 import {environment} from "../../../../environments/environment";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Title} from "@angular/platform-browser";
 import {Page} from "../../../shared/model/page";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Category} from "../../../admin/category/category";
-import {UserAuthorService} from "../../author/user-author-service";
 import {UserCategoryService} from "../user-category-service";
 
 @Component({

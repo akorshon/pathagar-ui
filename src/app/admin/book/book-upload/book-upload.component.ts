@@ -19,7 +19,7 @@ export class BookUploadComponent {
   book!: Book;
   submitted = false;
 	books =  new Array<Book>();
-  uplodedBooks = new Array<Book>();
+  uploadedBooks = new Array<Book>();
 	authors = new Array<Author>();
   fileUrl = environment.backendUrl + '/api/public/files/';
 
@@ -45,12 +45,13 @@ export class BookUploadComponent {
 
 	onSubmit(books: Book[]) {
     console.log('on submit');
+
     let count = 0;
     for (let i = 0; i < this.books.length; i++) {
       this.adminFileService.uploadBook(this.books[i]).subscribe({
         next: (resp) => {
           console.log('success');
-          this.uplodedBooks.push(resp);
+          this.uploadedBooks.push(resp);
         },
         error: (error) => {
           console.log('error');
@@ -71,7 +72,7 @@ export class BookUploadComponent {
 		if(count === this.books.length) {
 			this.ngbActiveModal.close({
         action: 'uploaded',
-        books: this.uplodedBooks,
+        books: this.uploadedBooks,
       });
 		}
 	}

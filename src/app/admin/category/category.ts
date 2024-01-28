@@ -1,18 +1,23 @@
 import {Book} from "../book/book";
+import {FileMeta} from "../../shared/model/file-meta";
 
 export class Category {
   constructor(
     public id: string,
     public name: string,
     public description: string,
-    public thumbnailPath: string,
-    public imagePath: string,
     public preview: string,
     public books: Book[],
-    public file: File) {
+    public file: File,
+    public imageFile: FileMeta,
+    public thumbFile: FileMeta) {
   }
 
   static empty(): Category {
-    return new Category('', '', '', '', '', '', [], new File([], ''));
+    return new Category('', '', '', '', [],
+      new File([], ''),
+      new FileMeta(),
+      new FileMeta()
+    );
   }
 }

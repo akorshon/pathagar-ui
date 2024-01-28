@@ -62,7 +62,6 @@ export class BooksComponent implements OnInit {
 
     modalRef.result.then((result) => {
       if(result != null && result.action == 'uploaded') {
-        // this.books.unshift(result.book);
         this.loadPage(this.pageNumber, this.searchTerm);
       }
     });

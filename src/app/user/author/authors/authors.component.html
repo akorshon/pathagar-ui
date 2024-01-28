@@ -7,7 +7,7 @@
         <div class="card border-0">
           <div class="card-body" (click)="onAuthorDetails(author)">
             <picture>
-              <img [src]="fileUrl + author.thumbnailPath" class="rounded img-fluid" alt="{{author.name}}">
+              <img [src]="fileUrl + author.imageFile.path" class="rounded img-fluid" alt="{{author.name}}">
             </picture>
             <p>{{author.name}}</p>
           </div>

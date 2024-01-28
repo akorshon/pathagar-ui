@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-sm-12">
     <pdf-viewer
-      [src]="fileUrl + book.filePath"
+      [src]="fileUrl + book.pdfFile.path"
       [show-all]="false"
       (after-load-complete)="afterLoadComplete($event)"
       [page]="page"

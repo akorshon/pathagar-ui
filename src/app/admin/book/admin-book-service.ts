@@ -16,11 +16,26 @@ export class AdminBookService {
     private http: HttpClient) {
   }
 
-  save(book: Book): Observable<any> {
+  backupSave(book: Book): Observable<any> {
     if(book.id) {
       return this.http.put(AdminBookService.URL, book);
     } else {
       return this.http.post(AdminBookService.URL, book);
+    }
+  }
+
+  save(book: Book): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('file', book.file);
+    formData.append('name', book.name);
+    formData.append('description', book.description);
+    formData.append('authors', JSON.stringify(book.authors));
+    formData.append('categories', JSON.stringify(book.categories));
+    if(book.id) {
+      formData.append('id', book.id);
+      return this.http.put(AdminBookService.URL, formData);
+    } else {
+      return this.http.post(AdminBookService.URL, formData);
     }
   }
 
