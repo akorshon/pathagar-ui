@@ -33,7 +33,7 @@
     "bootstrap": "^5.2.3",
     "jwt-decode": "^3.1.2",
     "ng2-pdf-viewer": "^9.1.5",
-    "ngx-extended-pdf-viewer": "^16.2.16",
+    "ngx-extended-pdf-viewer": "^19.1.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.3"
