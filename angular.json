@@ -76,10 +76,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "pathagar-ui:build:production"
+              "buildTarget": "pathagar-ui:build:production"
             },
             "development": {
-              "browserTarget": "pathagar-ui:build:development"
+              "buildTarget": "pathagar-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -87,7 +87,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "pathagar-ui:build"
+            "buildTarget": "pathagar-ui:build"
           }
         },
         "test": {
