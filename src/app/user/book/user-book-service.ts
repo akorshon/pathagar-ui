@@ -29,6 +29,10 @@ export class UserBookService {
     return this.http.get(`${UserBookService.USER_BOOK_URL}?page=${page}&size=50&search=${search}`);
   }
 
+  findAllByStatus(status: string): Observable<any> {
+    return this.http.get(`${UserBookService.USER_BOOK_URL}/status/${status}`);
+  }
+
   findByBookId(bookId: string): Observable<any> {
     return this.http.get(`${UserBookService.USER_BOOK_URL}/book/${bookId}`);
   }

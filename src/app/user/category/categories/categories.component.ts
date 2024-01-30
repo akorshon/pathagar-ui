@@ -53,7 +53,7 @@ export class CategoriesComponent implements OnInit {
     this.loadCategories(pageNumber, '');
   }
 
-  onAuthorDetails(author: Author) {
+  onCategoryDetails(author: Author) {
     this.router.navigate(['/user/category', author.id]);
   }
 }

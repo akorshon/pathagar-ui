@@ -1,12 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Author} from "../../../admin/author/author";
 import {environment} from "../../../../environments/environment";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Title} from "@angular/platform-browser";
 import {ActivatedRoute} from "@angular/router";
 import {Book} from "../../../admin/book/book";
 import {BookViewComponent} from "../../book/book-view/book-view.component";
-import {UserAuthorService} from "../../author/user-author-service";
 import {Category} from "../../../admin/category/category";
 import {UserCategoryService} from "../user-category-service";
 

@@ -6,9 +6,13 @@ import {environment} from "../../../environments/environment";
 import {Book} from "../../admin/book/book";
 import {BookViewComponent} from "../book/book-view/book-view.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {UserBookService} from "../book/user-book-service";
+import {UserBook} from "../book/user-book/user-book";
+import {Author} from "../../admin/author/author";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
-	selector: 'app-admin-dashboard',
+	selector: 'app-user-dashboard',
 	templateUrl: './dashboard.component.html',
 	styleUrls: ['./dashboard.component.scss']
 })
@@ -16,9 +20,12 @@ export class DashboardComponent implements OnInit {
   time = new Date();
   categories: Category[] = [];
   fileUrl = environment.backendUrl + '/api/public/files/';
+  yourReading: UserBook[] = [];
 
   constructor(
+    private userBookService: UserBookService,
     private ngbModal: NgbModal,
+    private router: Router,
     private categoryService: UserCategoryService) {
   }
 
@@ -30,6 +37,11 @@ export class DashboardComponent implements OnInit {
     this.categoryService.findAll(0, '').subscribe((resp) => {
       this.categories = resp.content;
     });
+
+
+    this.userBookService.findAllByStatus("READING").subscribe((resp) => {
+      this.yourReading = resp.content;
+    });
   }
 
   onRead(book: Book) {
@@ -40,6 +52,13 @@ export class DashboardComponent implements OnInit {
     modalRef.componentInstance.book = book;
   }
 
+  onCategoryDetails(category: Category) {
+    this.router.navigate(['/user/category', category.id]);
+  }
+
+  onUserBookClick() {
+    this.router.navigate(['/user/user-book']);
+  }
   customOptions: OwlOptions = {
     loop: false,
     margin: 10,
@@ -55,7 +74,7 @@ export class DashboardComponent implements OnInit {
         items: 1
       },
       400: {
-        items: 3
+        items: 2
       },
       740: {
         items: 4

@@ -145,3 +145,24 @@ footer {
   margin-top: -55px
 }
 
+
+
+
+.owl-prev,
+.owl-next {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-20%);
+}
+
+.owl-prev {
+  left: 0rem;
+}
+
+.owl-next {
+  right: 0rem;
+}
+
+.owl-nav i {
+  font-size: 40px;
+}

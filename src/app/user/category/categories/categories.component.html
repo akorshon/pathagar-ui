@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 my-2 d-flex align-items-stretch" *ngFor="let author of categories; let i=index">
         <div class="card border-0">
-          <div class="card-body" (click)="onAuthorDetails(author)">
+          <div class="card-body" (click)="onCategoryDetails(author)">
             <picture>
               <img [src]="fileUrl + author.thumbFile.path" class="rounded img-fluid" alt="{{author.name}}">
             </picture>

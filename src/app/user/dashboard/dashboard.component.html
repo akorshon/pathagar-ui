@@ -1,4 +1,4 @@
-<div class="py-5">
+<div class="py-5 dashboard">
   <div class="container-md">
     <div class="shadow-sm mb-4 bg-light" style="border-left: 3px solid #15a362;">
       <div class="app-card-body p-3 p-lg-4">
@@ -14,12 +14,35 @@
 
   <div class="row">
     <div class="col-12">
+
+
+      <div>
+        <div class="pt-5 pb-2">
+        <h3 *ngIf="yourReading.length > 0">Start from where you left</h3>
+        <div><button class="btn  btn-sm" (click)="onUserBookClick()">More</button></div>
+        </div>
+        <owl-carousel-o [options]="customOptions">
+          <ng-container *ngFor="let userBook of yourReading">
+            <ng-template carouselSlide>
+              <img [src]="fileUrl + userBook.book.coverImage.path" (click)="onRead(userBook.book)">
+              <div class="mt-2 fs-5">{{userBook.book.name}}</div>
+              <div class="small"> Page: {{userBook.book.totalPage}}</div>
+              <div class="small"> Size: {{userBook.book.pdfFile.size | filesize}}</div>
+              <div class="p-2 bg-info">Read: {{userBook.page}} pages</div>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+      </div>
+
       <div *ngFor="let category of categories">
-        <h3 class="pt-5" *ngIf="category.books.length > 0">{{ category.name }}</h3>
+        <div class="pt-5 pb-2" *ngIf="category.books.length > 0">
+          <h3 >{{ category.name }} </h3>
+          <div><button class="btn  btn-sm" (click)="onCategoryDetails(category)">More</button></div>
+        </div>
         <owl-carousel-o [options]="customOptions">
           <ng-container *ngFor="let book of category.books">
             <ng-template carouselSlide>
-              <img [src]="fileUrl + book.coverImage.path" style="height: 300px; width: auto" (click)="onRead(book)">
+              <img [src]="fileUrl + book.coverImage.path" (click)="onRead(book)">
               <div class="mt-2 fs-5">{{book.name}}</div>
               <div class="small"> Page: {{book.totalPage}}</div>
               <div class="small"> Size: {{book.pdfFile.size | filesize}}</div>
@@ -27,6 +50,7 @@
           </ng-container>
         </owl-carousel-o>
       </div>
+
     </div>
   </div>
   </div>
