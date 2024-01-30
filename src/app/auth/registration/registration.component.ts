@@ -1,8 +1,10 @@
 import {Component, OnInit} from "@angular/core";
-import {Registration} from "../../model/registration";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Registration} from "../model/registration";
+import {Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
-import {AuthService} from "../../service/auth.service";
+import {AuthService} from "../service/auth.service";
+import {AuthPageType} from "../auth-page-type";
+import {Error} from "../../shared/error/error";
 
 @Component({
   templateUrl: 'registration.component.html'
@@ -11,11 +13,12 @@ export class RegistrationComponent implements OnInit {
 
   submitted = false;
   registration = new Registration('', '', '');
+  authPageType =  AuthPageType
+  error!: Error;
 
   constructor(
     private title: Title,
     protected router: Router,
-    private route: ActivatedRoute,
     private authService: AuthService) {
   }
 
@@ -29,10 +32,10 @@ export class RegistrationComponent implements OnInit {
       next: () => {
         this.router.navigate(['auth/login']);
       }, error: (err) => {
-
-      }, complete: () => {
+        this.error = err.error;
         this.submitted = false;
       }
     })
   }
+
 }

@@ -51,7 +51,7 @@ export class AuthorsComponent implements OnInit {
   }
 
   onOpenAuthorModal() {
-    const modalRef = this.ngbModal.open(AuthorUploadComponent, {
+    const modalRef = this.ngbModal.open(AuthorComponent, {
       size: 'xl',
       backdrop: 'static'
     });

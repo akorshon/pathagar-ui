@@ -5,6 +5,7 @@ import {BooksComponent} from "./book/books/books.component";
 import {AuthorsComponent} from "./author/authors/authors.component";
 import {SettingComponent} from "./setting/setting.component";
 import {CategoriesComponent} from "./category/categories/categories.component";
+import {AuthorComponent} from "./author/author/author.component";
 
 
 export const routes: Routes = [
@@ -19,6 +20,10 @@ export const routes: Routes = [
   {
     path: 'authors',
     component: AuthorsComponent,
+  },
+  {
+    path: 'authors/:id',
+    component: AuthorComponent,
   },
   {
     path: 'categories',

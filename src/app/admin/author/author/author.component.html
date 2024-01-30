@@ -45,18 +45,19 @@
           <textarea rows="7" class="form-control" [(ngModel)]="author.description"></textarea>
         </div>
 
+        <app-error [error]="error"></app-error>
+
       </div>
     </div>
   </div>
+
+
 
     <div class="card-footer">
       <button class="float-start btn-sm btn btn-danger m-2" (click)="onDelete(author)">Delete</button>
       <div class="float-end">
         <button class="float-end btn-sm btn btn-warning m-2" (click)="onCancel()">Close</button>
-        <button [disabled]="submitted"
-                (click)="onSubmit(author)"
-                class="btn btn-sm btn m-2 btn-success">Save
-        </button>
+        <button [disabled]="submitted" (click)="onSubmit(author)" class="btn btn-sm btn m-2 btn-success">Save</button>
       </div>
     </div>
 </div>

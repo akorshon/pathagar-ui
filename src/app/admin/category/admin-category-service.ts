@@ -17,13 +17,28 @@ export class AdminCategoryService {
     private http: HttpClient) {
   }
 
-  save(category: Category): Observable<any> {
+  uploadCategory(category: Category): Observable<any> {
+    const formData: FormData = new FormData();
+    if(category.file) {
+      formData.append('file', category.file);
+    }
+    formData.append('name', category.name);
+    formData.append('description', category.description);
+    if(category.id) {
+      formData.append('id', category.id);
+      return this.http.put(`${AdminCategoryService.URL}`, formData);
+    } else {
+      return this.http.post(`${AdminCategoryService.URL}`, formData);
+    }
+  }
+
+  /*save(category: Category): Observable<any> {
     if(category.id) {
       return this.http.put(AdminCategoryService.URL, category);
     } else {
       return this.http.post(AdminCategoryService.URL, category);
     }
-  }
+  }*/
 
   findById(id: string): Observable<any> {
     return this.http.get(`${AdminCategoryService.URL}/${id}`);

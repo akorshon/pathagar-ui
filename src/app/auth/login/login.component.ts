@@ -1,11 +1,12 @@
 import {Component, OnInit} from "@angular/core";
-import {Login} from "../../model/login";
+import {Login} from "../model/login";
 import {Title} from "@angular/platform-browser";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AuthService} from "../../service/auth.service";
+import {AuthService} from "../service/auth.service";
 import jwtDecode from "jwt-decode";
-import {TokenData} from "../../model/token-data";
-import {Exception} from "../../../shared/model/exception";
+import {TokenData} from "../model/token-data";
+import {Error} from "../../shared/error/error";
+import {AuthPageType} from "../auth-page-type";
 
 @Component({
   templateUrl: 'login.component.html',
@@ -15,12 +16,11 @@ export class LoginComponent  implements OnInit {
   login = new Login('', '');
   loading = false;
   submitted = false;
-  error: Exception | undefined;
-
+  error!: Error;
+  authPageType =  AuthPageType
 
   constructor(
     private title: Title,
-    private activeRoute: ActivatedRoute,
     protected router: Router,
     private authService: AuthService) {
   }

@@ -1,0 +1,17 @@
+<div class="alert alert-primary my-2">
+
+  <div *ngIf="page != AuthPageType.LOGIN">
+    Already have an account?
+    <a routerLink="/auth/login">Log in</a>
+  </div>
+
+  <div *ngIf="page != AuthPageType.REGISTRATION">
+    No account?
+    <a routerLink="/auth/registration">Registration</a>
+  </div>
+
+  <div *ngIf="page != AuthPageType.RECOVER_PASSWORD">
+    Forgot password?
+    <a routerLink="/auth/recover-password">Recover password</a>
+  </div>
+</div>

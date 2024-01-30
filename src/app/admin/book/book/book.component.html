@@ -44,7 +44,7 @@
           <ng-select [(ngModel)]="book.categories"
                      [items]="categories | async"
                      (add)="updateCategory($event, 'add')"
-                     (remove)="updateCategory($event.value, 'remove')"
+                     (remove)="updateCategory($event, 'remove')"
                      [loading]="categoryLoading"
                      [hideSelected]="true"
                      [multiple]="true"

@@ -26,7 +26,9 @@ export class AdminBookService {
 
   save(book: Book): Observable<any> {
     const formData: FormData = new FormData();
-    formData.append('file', book.file);
+    if(book.file) {
+      formData.append('file', book.file);
+    }
     formData.append('name', book.name);
     formData.append('description', book.description);
     formData.append('authors', JSON.stringify(book.authors));

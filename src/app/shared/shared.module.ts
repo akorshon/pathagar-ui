@@ -9,6 +9,7 @@ import {NgbCollapseModule, NgbDropdownModule} from "@ng-bootstrap/ng-bootstrap";
 import {CommonModule} from "@angular/common";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {FileSizePipe} from "./pipe/file-size-pipe";
+import {ErrorComponent} from "./error/error.component";
 
 @NgModule({
     imports: [
@@ -27,11 +28,13 @@ import {FileSizePipe} from "./pipe/file-size-pipe";
     AdminLayoutComponent,
     UserLayoutComponent,
     FileSizePipe,
+    ErrorComponent,
   ],
   providers: [
   ],
   exports: [
     FileSizePipe,
+    ErrorComponent,
   ],
 })
 export class SharedModule { }

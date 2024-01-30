@@ -11,11 +11,15 @@ import {LoadingBarHttpClientModule} from "@ngx-loading-bar/http-client";
 import {NgxExtendedPdfViewerModule} from 'ngx-extended-pdf-viewer';
 import {AuthInterceptor} from "./auth/interceptor /auth.interceptor";
 import {FileSizePipe} from "./shared/pipe/file-size-pipe";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {CarouselModule} from "ngx-owl-carousel-o";
 
 @NgModule({
   imports: [
     CommonModule,
     BrowserModule,
+    BrowserAnimationsModule,
+    CarouselModule,
     HttpClientModule,
     SharedModule,
     NgbModule,

@@ -8,6 +8,7 @@ import {Page} from "../../../shared/model/page";
 import {CategoryComponent} from "../category/category.component";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AdminCategoryService} from "../admin-category-service";
+import {Category} from "../category";
 
 @Component({
 	selector: 'app-admin-categories',
@@ -51,7 +52,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   onOpenModal() {
-    const modalRef = this.ngbModal.open(CategoryUploadComponent, {
+    const modalRef = this.ngbModal.open(CategoryComponent, {
       size: 'xl',
       backdrop: 'static'
     });
@@ -66,12 +67,12 @@ export class CategoriesComponent implements OnInit {
 		fileInput.click();
 	}
 
-  onEdit(author: Author, index: number) {
+  onEdit(category: Category, index: number) {
     const modalRef = this.ngbModal.open(CategoryComponent, {
       size: 'lg',
       backdrop: 'static'
     });
-    modalRef.componentInstance.author = author;
+    modalRef.componentInstance.category = category;
 
     modalRef.result.then((result) => {
       if(result.action == 'deleted') {

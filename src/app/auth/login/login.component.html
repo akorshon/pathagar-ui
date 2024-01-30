@@ -1,12 +1,7 @@
 <div class="row align-items-center g-5 py-5">
 
   <div class="col-lg-6 text-center text-lg-start px-5">
-    <h1 class="display-4 fw-bold lh-1 mb-3">PATHAGAR </h1>
-    <div class="row">
-      <p class="col-lg-10 fs-4">
-        Bookstore for everyone everyday everywhere.
-      </p>
-    </div>
+    <authpage-description></authpage-description>
   </div>
 
   <div class="mx-auto col-lg-6">
@@ -38,23 +33,9 @@
               class="w-100 btn btn-lg btn-primary" >Log in</button>
       <hr class="my-4">
 
-      <div *ngIf="error">
-        <div class="alert alert-danger" *ngFor="let error of error.errors">
-          {{error}}
-        </div>
-      </div>
+      <app-error [error]="error"></app-error>
 
-    <div class="alert alert-primary my-2">
-      <div>
-        No account?
-        <a routerLink="/auth/registration">Registration</a>
-      </div>
-
-      <div>
-        Forgot password?
-        <a routerLink="/auth/forgot-password">Recover password</a>
-      </div>
-    </div>
+      <auth-navigation [page]="authPageType.LOGIN"></auth-navigation>
 
   </div>
   </div>

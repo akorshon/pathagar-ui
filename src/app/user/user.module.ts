@@ -8,23 +8,25 @@ import {UserBookComponent} from "./book/user-book/user-book.component";
 import {BookViewComponent} from "./book/book-view/book-view.component";
 import {PdfViewerModule} from "ng2-pdf-viewer";
 import {AuthorsComponent} from "./author/authors/authors.component";
-import {FileSizePipe} from "../shared/pipe/file-size-pipe";
 import {AuthorDetailsComponent} from "./author/author-details/author-details.component";
 import {SharedModule} from "../shared/shared.module";
 import {CategoriesComponent} from "./category/categories/categories.component";
 import {CategoryDetailsComponent} from "./category/category-details/category-details.component";
+import {CarouselModule} from "ngx-owl-carousel-o";
+import {DashboardComponent} from "./dashboard/dashboard.component";
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    UserRoutingModule,
-    NgbPaginationModule,
-    PdfViewerModule,
-    SharedModule,
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        UserRoutingModule,
+        NgbPaginationModule,
+        PdfViewerModule,
+        SharedModule,
+        CarouselModule,
+    ],
   declarations: [
     BookComponent,
     UserBookComponent,
@@ -35,6 +37,8 @@ import {CategoryDetailsComponent} from "./category/category-details/category-det
 
     CategoriesComponent,
     CategoryDetailsComponent,
+
+    DashboardComponent
   ],
   providers: [
 

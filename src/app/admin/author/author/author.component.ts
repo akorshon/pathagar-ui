@@ -6,6 +6,7 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {Title} from "@angular/platform-browser";
 import {FileType} from "../../../shared/model/file-type";
 import {AdminFileService} from "../../service/admin-file-service";
+import {Error} from "../../../shared/error/error";
 
 @Component({
 	selector: 'app-admin-author-upload',
@@ -18,6 +19,7 @@ export class AuthorComponent implements OnInit {
   author = Author.empty();
   fileUrl = environment.backendUrl + '/api/public/files/';
   selectedFile = new File([], '');
+  error!: Error;
 
   constructor(
     private title: Title,
@@ -61,16 +63,16 @@ export class AuthorComponent implements OnInit {
   onSubmit(author: Author) {
     console.log('on submit');
 
-    this.adminFileService.uploadAuthor(this.author).subscribe({
+    this.adminAuthorService.uploadAuthor(this.author).subscribe({
       next: (resp) => {
         this.ngbActiveModal.close(resp);
       },
-      error: (error) => {
+      error: (err) => {
+        this.error = err.error;
       }
     });
 
   }
-
 
   onSelectImage(event: any): void {
     this.selectedFile = event?.target?.files[0];
@@ -79,6 +81,7 @@ export class AuthorComponent implements OnInit {
     reader.onload = (e: any) => {
       this.author.preview = e.target.result;
       this.author.file =  this.selectedFile;
+      this.author.name = this.selectedFile.name.replace(/\.[^/.]+$/, "").replace(/_/g, " ");
     };
   }
 

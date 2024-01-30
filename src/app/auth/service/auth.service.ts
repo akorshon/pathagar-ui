@@ -12,6 +12,7 @@ import {environment} from "../../../environments/environment";
 export class AuthService {
   static LOGIN_API = environment.backendUrl +  '/api/auth/login';
   static REGISTRATION_API = environment.backendUrl +  '/api/auth/registration';
+  static RECOVER_PASSWORD_API = environment.backendUrl +  '/api/auth/recover-password';
 
   constructor(
     @Inject(PLATFORM_ID) private platformId : any,
@@ -24,6 +25,10 @@ export class AuthService {
 
   registration(registration: Registration): Observable<any> {
     return  this.http.post(AuthService.REGISTRATION_API, registration);
+  }
+
+  recoverPassword(email: string): Observable<any> {
+    return  this.http.post(AuthService.RECOVER_PASSWORD_API, email);
   }
 
   logout() {

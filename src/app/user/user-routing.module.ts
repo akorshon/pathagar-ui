@@ -5,14 +5,14 @@ import {UserBookComponent} from "./book/user-book/user-book.component";
 import {AuthorsComponent} from "./author/authors/authors.component";
 import {AuthorDetailsComponent} from "./author/author-details/author-details.component";
 import {CategoriesComponent} from "./category/categories/categories.component";
-import {CategoryComponent} from "../admin/category/category/category.component";
 import {CategoryDetailsComponent} from "./category/category-details/category-details.component";
+import {DashboardComponent} from "./dashboard/dashboard.component";
 
 
 export const routes: Routes = [
   {
     path: '',
-    component: BookComponent,
+    component: DashboardComponent,
   },
   {
     path: 'book',
