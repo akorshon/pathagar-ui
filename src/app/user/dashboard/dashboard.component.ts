@@ -13,7 +13,7 @@ import {Router} from "@angular/router";
 @Component({
 	selector: 'app-user-dashboard',
 	templateUrl: './dashboard.component.html',
-	styleUrls: ['']
+	styleUrls: []
 })
 export class DashboardComponent implements OnInit {
   time = new Date();

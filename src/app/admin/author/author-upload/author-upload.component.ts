@@ -8,7 +8,7 @@ import {AdminFileService} from "../../service/admin-file-service";
 @Component({
 	selector: 'app-admin-author-upload',
 	templateUrl: './author-upload.component.html',
-	styleUrls: ['']
+	styleUrls: []
 })
 export class AuthorUploadComponent implements OnInit {
 

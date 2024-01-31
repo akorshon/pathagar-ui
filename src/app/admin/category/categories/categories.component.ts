@@ -12,7 +12,7 @@ import {Category} from "../category";
 @Component({
 	selector: 'app-admin-categories',
 	templateUrl: './categories.component.html',
-	styleUrls: ['']
+	styleUrls: []
 })
 export class CategoriesComponent implements OnInit {
 

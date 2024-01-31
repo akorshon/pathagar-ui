@@ -10,7 +10,7 @@ import {UserCategoryService} from "../user-category-service";
 @Component({
 	selector: 'app-user-authors',
 	templateUrl: './categories.component.html',
-	styleUrls: ['']
+	styleUrls: []
 })
 export class CategoriesComponent implements OnInit {
 

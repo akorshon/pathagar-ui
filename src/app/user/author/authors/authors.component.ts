@@ -10,7 +10,7 @@ import {UserAuthorService} from "../user-author-service";
 @Component({
 	selector: 'app-user-authors',
 	templateUrl: './authors.component.html',
-	styleUrls: ['']
+	styleUrls: []
 })
 export class AuthorsComponent implements OnInit {
 

@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 @Component({
 	selector: 'app-admin-dashboard',
 	templateUrl: './dashboard.component.html',
-	styleUrls: ['']
+	styleUrls: []
 })
 export class DashboardComponent implements OnInit {
   time = new Date();

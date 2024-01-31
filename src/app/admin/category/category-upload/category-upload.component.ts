@@ -9,7 +9,7 @@ import {Category} from "../category";
 @Component({
 	selector: 'app-admin-category-upload',
 	templateUrl: './category-upload.component.html',
-	styleUrls: ['']
+	styleUrls: []
 })
 export class CategoryUploadComponent implements OnInit {
 

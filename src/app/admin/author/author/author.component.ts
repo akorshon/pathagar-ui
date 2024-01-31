@@ -9,7 +9,7 @@ import {Error} from "../../../shared/error/error";
 @Component({
 	selector: 'app-admin-author-upload',
 	templateUrl: './author.component.html',
-	styleUrls: ['']
+	styleUrls: []
 })
 export class AuthorComponent implements OnInit {
 

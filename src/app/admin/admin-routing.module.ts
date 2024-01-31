@@ -3,7 +3,6 @@ import {NgModule} from "@angular/core";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {BooksComponent} from "./book/books/books.component";
 import {AuthorsComponent} from "./author/authors/authors.component";
-import {SettingComponent} from "./setting/setting.component";
 import {CategoriesComponent} from "./category/categories/categories.component";
 import {AuthorComponent} from "./author/author/author.component";
 
@@ -32,10 +31,6 @@ export const routes: Routes = [
   {
     path: 'book',
     component: BooksComponent,
-  },
-  {
-    path: 'setting',
-    component: SettingComponent,
   },
 ];
 

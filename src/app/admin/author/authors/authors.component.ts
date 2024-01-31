@@ -11,7 +11,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 @Component({
 	selector: 'app-admin-authors',
 	templateUrl: './authors.component.html',
-	styleUrls: ['']
+	styleUrls: []
 })
 export class AuthorsComponent implements OnInit {
 

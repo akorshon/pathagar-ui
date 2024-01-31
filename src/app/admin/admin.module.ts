@@ -13,7 +13,6 @@ import {BookComponent} from "./book/book/book.component";
 import {NgSelectModule} from "@ng-select/ng-select";
 import {AuthorComponent} from "./author/author/author.component";
 import {NgxExtendedPdfViewerModule} from "ngx-extended-pdf-viewer";
-import {SettingComponent} from "./setting/setting.component";
 import {SharedModule} from "../shared/shared.module";
 import {CategoryUploadComponent} from "./category/category-upload/category-upload.component";
 import {CategoriesComponent} from "./category/categories/categories.component";
@@ -46,8 +45,6 @@ import {CategoryComponent} from "./category/category/category.component";
     BookComponent,
     BooksComponent,
     BookUploadComponent,
-
-    SettingComponent,
   ],
   exports: [
 

@@ -8,7 +8,7 @@ import {AdminFileService} from "../../service/admin-file-service";
 @Component({
 	selector: 'app-book-upload',
 	templateUrl: './book-upload.component.html',
-	styleUrls: ['']
+	styleUrls: []
 })
 export class BookUploadComponent {
 

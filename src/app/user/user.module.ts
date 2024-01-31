@@ -41,7 +41,6 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
     DashboardComponent
   ],
   providers: [
-
   ]
 })
 export class UserModule {}
