@@ -9,7 +9,7 @@ import {environment} from "../../../environments/environment";
 })
 export class BookService {
 
-  public static  URL = environment.backendUrl + "/api/user/books";
+  static readonly  URL = environment.backendUrl + "/api/user/books";
 
   constructor(
     private http: HttpClient) {

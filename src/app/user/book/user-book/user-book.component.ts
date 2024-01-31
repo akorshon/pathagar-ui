@@ -14,7 +14,7 @@ import {UserBook} from "./user-book";
 @Component({
 	selector: 'app-user-books',
 	templateUrl: './user-book.component.html',
-	styleUrls: ['./user-book.component.scss']
+	styleUrls: ['']
 })
 export class UserBookComponent implements OnInit {
 

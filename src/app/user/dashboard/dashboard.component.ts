@@ -8,13 +8,12 @@ import {BookViewComponent} from "../book/book-view/book-view.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {UserBookService} from "../book/user-book-service";
 import {UserBook} from "../book/user-book/user-book";
-import {Author} from "../../admin/author/author";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
 	selector: 'app-user-dashboard',
 	templateUrl: './dashboard.component.html',
-	styleUrls: ['./dashboard.component.scss']
+	styleUrls: ['']
 })
 export class DashboardComponent implements OnInit {
   time = new Date();

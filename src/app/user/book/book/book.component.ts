@@ -10,7 +10,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 @Component({
 	selector: 'app-user-book',
 	templateUrl: './book.component.html',
-	styleUrls: ['./book.component.scss']
+	styleUrls: ['']
 })
 export class BookComponent implements OnInit {
 

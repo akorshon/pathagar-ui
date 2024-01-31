@@ -11,7 +11,7 @@ import {UserCategoryService} from "../user-category-service";
 @Component({
 	selector: 'app-admin-author-details',
 	templateUrl: './category-details.component.html',
-	styleUrls: ['./category-details.component.scss']
+	styleUrls: ['']
 })
 export class CategoryDetailsComponent implements OnInit {
 

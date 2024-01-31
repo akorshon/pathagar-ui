@@ -9,7 +9,7 @@ import {AdminCategoryService} from "../admin-category-service";
 @Component({
 	selector: 'app-admin-category-upload',
 	templateUrl: './category.component.html',
-	styleUrls: ['./category.component.scss']
+	styleUrls: ['']
 })
 export class CategoryComponent implements OnInit {
 

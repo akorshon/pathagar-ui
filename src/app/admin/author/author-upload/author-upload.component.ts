@@ -1,16 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {Author} from "../author";
 import {environment} from "../../../../environments/environment";
-import {AdminAuthorService} from "../admin-author-service";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {Title} from "@angular/platform-browser";
 import {AdminFileService} from "../../service/admin-file-service";
-import {FileType} from "../../../shared/model/file-type";
 
 @Component({
 	selector: 'app-admin-author-upload',
 	templateUrl: './author-upload.component.html',
-	styleUrls: ['./author-upload.component.scss']
+	styleUrls: ['']
 })
 export class AuthorUploadComponent implements OnInit {
 
@@ -22,8 +20,7 @@ export class AuthorUploadComponent implements OnInit {
   constructor(
     private title: Title,
     public ngbActiveModal: NgbActiveModal,
-    private adminFileService: AdminFileService,
-    private adminAuthorService: AdminAuthorService) {
+    private adminFileService: AdminFileService) {
 	}
 
 	ngOnInit(): void {
@@ -40,13 +37,10 @@ export class AuthorUploadComponent implements OnInit {
 	onSubmit(authors: Author[]) {
     console.log('on submit');
     let count = 0;
-    for (let i = 0; i < this.authors.length; i++) {
-      this.adminFileService.uploadAuthor(this.authors[i]).subscribe({
+    for (let author of authors) {
+      this.adminFileService.uploadAuthor(author).subscribe({
         next: (resp) => {
           console.log(resp);
-        },
-        error: (error) => {
-
         },
         complete: () => {
           this.onFinishUpload(++count);

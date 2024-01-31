@@ -2,16 +2,13 @@ import {Component} from '@angular/core';
 import {Book} from "../book";
 import {Author} from "../../author/author";
 import {environment} from "../../../../environments/environment";
-import {AdminBookService} from "../admin-book-service";
-import {AdminAuthorService} from "../../author/admin-author-service";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {AdminFileService} from "../../service/admin-file-service";
-import {FileType} from "../../../shared/model/file-type";
 
 @Component({
 	selector: 'app-book-upload',
 	templateUrl: './book-upload.component.html',
-	styleUrls: ['./book-upload.component.scss']
+	styleUrls: ['']
 })
 export class BookUploadComponent {
 
@@ -25,9 +22,7 @@ export class BookUploadComponent {
 
 	constructor(
     public ngbActiveModal: NgbActiveModal,
-		private adminBookService: AdminBookService,
-    private adminFileService: AdminFileService,
-		private adminAuthorService: AdminAuthorService) {
+    private adminFileService: AdminFileService) {
 	}
 
 	onClickFileInputButton(id: string) {

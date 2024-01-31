@@ -2,7 +2,6 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
-import {Author} from "../author/author";
 import {Category} from "./category";
 
 
@@ -11,7 +10,7 @@ import {Category} from "./category";
 })
 export class AdminCategoryService {
 
-  public static  URL = environment.backendUrl + "/api/admin/categories";
+  static readonly URL = environment.backendUrl + "/api/admin/categories";
 
   constructor(
     private http: HttpClient) {

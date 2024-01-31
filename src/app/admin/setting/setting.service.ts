@@ -9,13 +9,13 @@ import {environment} from "../../../environments/environment";
 })
 export class SettingService {
 
-  public static  CLEANUP_URL = environment.backendUrl + "/api/admin/setting/clean-up";
-  public static  THUMB_URL = environment.backendUrl + "/api/admin/thumbs";
-  public static  MOVE_FILE_URL = environment.backendUrl + "/api/admin/file/move";
+  static readonly  CLEANUP_URL = environment.backendUrl + "/api/admin/setting/clean-up";
+  static readonly  THUMB_URL = environment.backendUrl + "/api/admin/thumbs";
+  static readonly  MOVE_FILE_URL = environment.backendUrl + "/api/admin/file/move";
 
-  public static  VISIT_URL = environment.backendUrl + "/api/admin/setting/visit";
-  public static  FIX_DATE_URL = environment.backendUrl + "/api/admin/setting/fix-date-by-name";
-  public static  GEN_HASH_URL = environment.backendUrl + "/api/admin/setting/generate-hash";
+  static readonly  VISIT_URL = environment.backendUrl + "/api/admin/setting/visit";
+  static readonly  FIX_DATE_URL = environment.backendUrl + "/api/admin/setting/fix-date-by-name";
+  static readonly  GEN_HASH_URL = environment.backendUrl + "/api/admin/setting/generate-hash";
 
   constructor(private http: HttpClient) { }
 

@@ -10,7 +10,7 @@ import {Book} from "./book";
 })
 export class AdminBookService {
 
-  public static  URL = environment.backendUrl + "/api/admin/books";
+  static readonly  URL = environment.backendUrl + "/api/admin/books";
 
   constructor(
     private http: HttpClient) {

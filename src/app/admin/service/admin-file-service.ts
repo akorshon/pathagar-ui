@@ -2,7 +2,6 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
-import {FileType} from "../../shared/model/file-type";
 import {Author} from "../author/author";
 import {Category} from "../category/category";
 import {Book} from "../book/book";
@@ -13,7 +12,7 @@ import {Book} from "../book/book";
 })
 export class AdminFileService {
 
-  public static  URL = environment.backendUrl + "/api/admin/file";
+  static readonly  URL = environment.backendUrl + "/api/admin/file";
   constructor(
     private http: HttpClient) {
   }

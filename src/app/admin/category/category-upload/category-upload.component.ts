@@ -4,13 +4,12 @@ import {environment} from "../../../../environments/environment";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {Title} from "@angular/platform-browser";
 import {AdminFileService} from "../../service/admin-file-service";
-import {FileType} from "../../../shared/model/file-type";
 import {Category} from "../category";
 
 @Component({
 	selector: 'app-admin-category-upload',
 	templateUrl: './category-upload.component.html',
-	styleUrls: ['./category-upload.component.scss']
+	styleUrls: ['']
 })
 export class CategoryUploadComponent implements OnInit {
 

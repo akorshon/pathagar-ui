@@ -13,7 +13,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 @Component({
 	selector: 'app-admin-books',
 	templateUrl: './books.component.html',
-	styleUrls: ['./books.component.scss']
+	styleUrls: ['']
 })
 export class BooksComponent implements OnInit {
 

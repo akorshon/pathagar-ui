@@ -10,7 +10,7 @@ import {UserBook} from "./user-book/user-book";
 })
 export class UserBookService {
 
-  public static  USER_BOOK_URL = environment.backendUrl + "/api/user/user-books";
+  static readonly  USER_BOOK_URL = environment.backendUrl + "/api/user/user-books";
 
   constructor(
     private http: HttpClient) {

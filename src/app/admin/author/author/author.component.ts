@@ -4,14 +4,12 @@ import {environment} from "../../../../environments/environment";
 import {AdminAuthorService} from "../admin-author-service";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {Title} from "@angular/platform-browser";
-import {FileType} from "../../../shared/model/file-type";
-import {AdminFileService} from "../../service/admin-file-service";
 import {Error} from "../../../shared/error/error";
 
 @Component({
 	selector: 'app-admin-author-upload',
 	templateUrl: './author.component.html',
-	styleUrls: ['./author.component.scss']
+	styleUrls: ['']
 })
 export class AuthorComponent implements OnInit {
 
@@ -24,7 +22,6 @@ export class AuthorComponent implements OnInit {
   constructor(
     private title: Title,
     public ngbActiveModal: NgbActiveModal,
-    private adminFileService: AdminFileService,
     private adminAuthorService: AdminAuthorService) {
 	}
 
@@ -33,19 +30,9 @@ export class AuthorComponent implements OnInit {
       console.log(this.author)
 	}
 
-
-	/*
-  onSubmit(author: Author) {
-      console.log(author);
-      this.adminAuthorService.save(author).subscribe((resp: Author) => {
-        this.ngbActiveModal.close(resp);
-      });
-    }
-  */
-    onCancel() {
+  onCancel() {
       this.ngbActiveModal.close(null);
 	}
-
 
   onDelete(author: Author) {
     this.adminAuthorService.delete(author.id).subscribe((resp) => {

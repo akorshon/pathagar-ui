@@ -3,7 +3,6 @@ import {Author} from "../../author/author";
 import {environment} from "../../../../environments/environment";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Title} from "@angular/platform-browser";
-import {CategoryUploadComponent} from "../category-upload/category-upload.component";
 import {Page} from "../../../shared/model/page";
 import {CategoryComponent} from "../category/category.component";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -13,7 +12,7 @@ import {Category} from "../category";
 @Component({
 	selector: 'app-admin-categories',
 	templateUrl: './categories.component.html',
-	styleUrls: ['./categories.component.scss']
+	styleUrls: ['']
 })
 export class CategoriesComponent implements OnInit {
 

@@ -10,7 +10,7 @@ import {Author} from "./author";
 })
 export class AdminAuthorService {
 
-  public static  URL = environment.backendUrl + "/api/admin/authors";
+  static readonly  URL = environment.backendUrl + "/api/admin/authors";
 
   constructor(
     private http: HttpClient) {

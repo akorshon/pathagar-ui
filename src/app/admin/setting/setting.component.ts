@@ -6,7 +6,7 @@ import {SettingService} from "./setting.service";
 @Component({
   selector: 'app-admin-setting',
   templateUrl: './setting.component.html',
-  styleUrls: ['./setting.component.scss']
+  styleUrls: ['']
 })
 export class SettingComponent implements OnInit {
 
