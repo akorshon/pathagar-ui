@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {Login} from "../model/login";
 import {Title} from "@angular/platform-browser";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {AuthService} from "../service/auth.service";
 import jwtDecode from "jwt-decode";
 import {TokenData} from "../model/token-data";

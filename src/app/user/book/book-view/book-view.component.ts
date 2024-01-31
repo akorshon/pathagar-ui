@@ -65,11 +65,7 @@ export class BookViewComponent implements OnInit {
 
   @HostListener("document:keydown", ["$event"])
   onKeyPress(event: KeyboardEvent) {
-    if (event.key === 'ArrowRight') {
-
-    } else if (event.key === 'ArrowLeft') {
-
-    } else if (event.key === '+') {
+    if (event.key === '+') {
       this.zoomIn();
     } else if (event.key === '-') {
       this.zoomOut();

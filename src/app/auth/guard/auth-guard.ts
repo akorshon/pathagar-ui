@@ -7,7 +7,7 @@ import {TokenData} from "../model/token-data";
   providedIn: 'root',
 })
 export class AuthGuard  {
-  static LOGIN_URL = 'auth/login';
+  static readonly LOGIN_URL = 'auth/login';
 
   constructor(
     protected router: Router) {

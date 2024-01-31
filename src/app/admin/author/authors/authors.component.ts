@@ -3,7 +3,6 @@ import {Author} from "../author";
 import {environment} from "../../../../environments/environment";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Title} from "@angular/platform-browser";
-import {AuthorUploadComponent} from "../author-upload/author-upload.component";
 import {AdminAuthorService} from "../admin-author-service";
 import {Page} from "../../../shared/model/page";
 import {AuthorComponent} from "../author/author.component";

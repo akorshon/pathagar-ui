@@ -68,9 +68,4 @@ export class SidebarComponent implements OnInit {
     localStorage.removeItem('token');
     this.router.navigate(['/auth/login']);
   }
-
-
-  ngOnDestroy(): void {
-    //this.mobileQuery.removeListener(this._mobileQueryListener);
-  }
 }

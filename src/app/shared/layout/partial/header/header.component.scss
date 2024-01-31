@@ -3,10 +3,6 @@ $topnav-background-color: #222;
   .navbar {
     background-color: $topnav-background-color;
 
-    .navbar-brand {
-      color: #fff;
-    }
-
     .nav-item > a {
       color: #999;
 
@@ -18,6 +14,7 @@ $topnav-background-color: #222;
       margin-left: auto;
     }
     .navbar-brand {
+      color: #fff;
       width: 235px;
       margin-left: 15px;
     }

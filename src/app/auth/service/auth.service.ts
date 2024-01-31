@@ -1,7 +1,7 @@
 import {Inject, Injectable, PLATFORM_ID} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Login} from "../model/login";
-import {observable, Observable} from "rxjs";
+import {Observable} from "rxjs";
 import {Registration} from "../model/registration";
 import {isPlatformBrowser} from "@angular/common";
 import {environment} from "../../../environments/environment";
@@ -10,9 +10,9 @@ import {environment} from "../../../environments/environment";
   providedIn: 'root',
 })
 export class AuthService {
-  static LOGIN_API = environment.backendUrl +  '/api/auth/login';
-  static REGISTRATION_API = environment.backendUrl +  '/api/auth/registration';
-  static RECOVER_PASSWORD_API = environment.backendUrl +  '/api/auth/recover-password';
+  static readonly LOGIN_API = environment.backendUrl +  '/api/auth/login';
+  static readonly REGISTRATION_API = environment.backendUrl +  '/api/auth/registration';
+  static readonly RECOVER_PASSWORD_API = environment.backendUrl +  '/api/auth/recover-password';
 
   constructor(
     @Inject(PLATFORM_ID) private platformId : any,

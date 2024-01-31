@@ -11,7 +11,7 @@ import {BookViewComponent} from "../../book/book-view/book-view.component";
 @Component({
 	selector: 'app-admin-author-details',
 	templateUrl: './author-details.component.html',
-	styleUrls: ['./author-details.component.scss']
+	styleUrls: ['']
 })
 export class AuthorDetailsComponent implements OnInit {
 

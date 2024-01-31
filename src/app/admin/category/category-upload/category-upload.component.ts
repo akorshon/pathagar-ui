@@ -38,8 +38,8 @@ export class CategoryUploadComponent implements OnInit {
 	onSubmit(categories: Category[]) {
     console.log('on submit');
     let count = 0;
-    for (let i = 0; i < this.categories.length; i++) {
-      this.adminFileService.uploadCategory(this.categories[i]).subscribe({
+    for (let category of categories) {
+      this.adminFileService.uploadCategory(category).subscribe({
         next: (resp) => {
           console.log(resp);
         },

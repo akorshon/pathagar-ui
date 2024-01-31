@@ -7,7 +7,7 @@ export class UserBook {
     public page: number,
     public started: Date,
     public ended: Date | null,
-    public status: String,
+    public status: string,
     public rating: number,
     public review: string) {
   }
