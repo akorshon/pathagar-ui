@@ -9,7 +9,6 @@ $topnav-background-color: #222;
   margin-left: -235px;
   margin-bottom: 48px;
   border: none;
-  border-radius: 0;
   overflow-y: auto;
   background-color: $topnav-background-color;
   bottom: 0;
@@ -92,9 +91,7 @@ $topnav-background-color: #222;
     }
 
     .panel-collapse {
-      border-radious: 0;
       border: none;
-
       .panel-body {
         .list-group-item {
           border-radius: 0;

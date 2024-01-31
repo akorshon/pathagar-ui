@@ -122,7 +122,7 @@ export class BookComponent implements OnInit {
   onUpdateThumb(page: number) {
     this.adminBookService.updateThumb(this.book.id, page).subscribe(resp => {
       this.book = resp;
-      this.book.coverImage.path = this.book.coverImage + "?" + new Date().getTime();
+      this.book.coverImage.path = this.book.coverImage.path + "?" + new Date().getTime();
     });
   }
 

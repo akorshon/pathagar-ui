@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - name: pathagar-ui
-          image: eu.gcr.io/marufh/pathagar-ui:v76
+          image: eu.gcr.io/marufh/pathagar-ui:v79
           ports:
             - containerPort: 80

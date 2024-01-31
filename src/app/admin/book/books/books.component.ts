@@ -110,7 +110,7 @@ export class BooksComponent implements OnInit {
       }
 
       if(result.action == 'saved') {
-        result.book.coverImage = result.book.coverImage + "?" + new Date().getTime();
+        result.book.coverImage.path = result.book.coverImage.path + "?" + new Date().getTime();
         this.books[index] = result.book;
       }
     });

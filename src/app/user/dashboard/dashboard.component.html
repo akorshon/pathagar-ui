@@ -24,7 +24,7 @@
         <owl-carousel-o [options]="customOptions">
           <ng-container *ngFor="let userBook of yourReading">
             <ng-template carouselSlide>
-              <img [src]="fileUrl + userBook.book.coverImage.path" (click)="onRead(userBook.book)">
+              <img [src]="fileUrl + userBook.book.coverImage.path" (click)="onRead(userBook.book)" alt="{{userBook.book.name}}">
               <div class="mt-2 fs-5">{{userBook.book.name}}</div>
               <div class="small"> Page: {{userBook.book.totalPage}}</div>
               <div class="small"> Size: {{userBook.book.pdfFile.size | filesize}}</div>
@@ -42,7 +42,7 @@
         <owl-carousel-o [options]="customOptions">
           <ng-container *ngFor="let book of category.books">
             <ng-template carouselSlide>
-              <img [src]="fileUrl + book.coverImage.path" (click)="onRead(book)">
+              <img [src]="fileUrl + book.coverImage.path" (click)="onRead(book)" alt="{{book.name}}">
               <div class="mt-2 fs-5">{{book.name}}</div>
               <div class="small"> Page: {{book.totalPage}}</div>
               <div class="small"> Size: {{book.pdfFile.size | filesize}}</div>
