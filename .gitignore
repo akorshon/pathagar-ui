@@ -41,6 +41,6 @@ testem.log
 .DS_Store
 Thumbs.db
 
-
 # Ignore deployment directory
 deployment/
+server.sh
