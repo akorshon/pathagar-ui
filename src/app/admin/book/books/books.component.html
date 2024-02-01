@@ -35,7 +35,7 @@
                   </picture>
 
                   <div class="mt-2 fs-5">{{book.name}}</div>
-                  <div class="" *ngIf="book.authors.length > 0">{{book.authors[0].name}}</div>
+                  <div class="" *ngIf="book.authors">{{book.authors[0].name}}</div>
                   <div class="small">Page: {{book.totalPage}}</div>
                   <div class="small">Size: {{book.pdfFile.size | filesize}}</div>
 

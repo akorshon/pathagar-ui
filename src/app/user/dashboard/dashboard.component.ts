@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit {
       this.time = new Date();
     }, 1000);
 
-    this.categoryService.findAll(0, '').subscribe((resp) => {
+    this.categoryService.findAllDetails(0, '').subscribe((resp) => {
       this.categories = resp.content;
     });
 

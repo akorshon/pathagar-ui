@@ -24,4 +24,9 @@ export class UserCategoryService {
     page = page - 1;
     return this.http.get(`${UserCategoryService.URL}?page=${page}&size=20&search=${search}`);
   }
+
+  findAllDetails(page: number, search: string): Observable<any> {
+    page = page - 1;
+    return this.http.get(`${UserCategoryService.URL}/details?page=${page}&size=20&search=${search}`);
+  }
 }
