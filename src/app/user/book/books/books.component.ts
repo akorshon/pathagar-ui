@@ -8,11 +8,11 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
-	selector: 'app-user-book',
-	templateUrl: './book.component.html',
+	selector: 'app-user-books',
+	templateUrl: './books.component.html',
 	styleUrls: []
 })
-export class BookComponent implements OnInit {
+export class BooksComponent implements OnInit {
 
   page!: Page;
   searchTerm: string = '';

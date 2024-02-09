@@ -5,24 +5,28 @@
 
         <div class="row">
           <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 my-2" *ngFor="let userBook of userBooks; let i=index">
-            <div class="card">
-              <div class="card-body d-flex justify-content-center">
-                <div>
-                  <picture class="">
-                    <img [src]="fileUrl + userBook.book.coverImage.path" class="rounded img-fluid" alt="{{userBook.book.name}}" (click)="onRead(userBook.book)">
-                  </picture>
+            <div class="card shadow h-100" style="border: none">
 
-                  <p class="mt-2">{{userBook.book.name}}</p>
-                  <div>Status: <span class="badge bg-success">{{userBook.status}}</span></div>
+              <img [src]="fileUrl + userBook.book.coverImage.path"
+                   style="width: 100%; height: auto;"
+                   class="rounded" alt="{{userBook.book.name}}" (click)="onRead(userBook.book)">
+
+              <div class="card-body">
+
+                <h5 class="card-title">{{userBook.book.name}}</h5>
+
+                <div class="card-text">
+                  <div><span class="badge bg-success">{{userBook.status}}</span></div>
                   <div *ngIf="userBook.status=='READING'">Read: {{userBook.page}} pages</div>
+                </div>
+
+                <div>
+                  <button *ngIf="userBook.status =='FINISHED'" (click)="onWriteReview(userBook.book, i)" class="btn btn-sm btn-primary m-1 float-start">Write a review</button>
+                  <button (click)="onDelete(userBook.book, i)" class="btn btn-sm btn-warning m-1 float-start">Delete</button>
                 </div>
               </div>
 
-              <div class="card-footer">
-                <button *ngIf="userBook.status =='FINISHED'" (click)="onWriteReview(userBook.book, i)" class="btn btn-sm btn-primary m-1 float-start">Write a review</button>
-                <button (click)="onDelete(userBook.book, i)" class="btn btn-sm btn-warning m-1 float-start">Delete</button>
               </div>
-
             </div>
           </div>
         </div>
@@ -36,5 +40,4 @@
         </div>
 
       </div>
-    </div>
 

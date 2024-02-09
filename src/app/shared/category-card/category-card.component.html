@@ -1,0 +1,12 @@
+<div class="card border-0 shadow h-100">
+  <img [src]="fileUrl + category.thumbFile.path"
+       style="width: 100%; height: auto"
+       class="rounded card-img-top" alt="{{category.name}}">
+  <div class="card-body">
+    <h5>{{category.name}}</h5>
+    <div class="d-flex flex-row gap-2">
+      <button class="btn btn-sm btn-primary" (click)="onCategoryDetails(category)">Category details</button>
+      <button *ngIf="admin" (click)="onEdit(category)" class="btn btn-sm btn-warning">Edit</button>
+    </div>
+  </div>
+</div>

@@ -26,27 +26,8 @@
         </div>
 
         <div class="row">
-          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 my-2 d-flex align-items-stretch" *ngFor="let book of books; let i=index">
-            <div class="card border-0">
-              <div class="card-body d-flex justify-content-center">
-                <div>
-                  <picture class="">
-                    <img [src]="fileUrl + book.coverImage.path" class="rounded img-fluid" alt="{{book.name}}" (click)="onRead(book)">
-                  </picture>
-
-                  <div class="mt-2 fs-5">{{book.name}}</div>
-                  <div class="" *ngIf="book.authors">{{book.authors[0].name}}</div>
-                  <div class="small">Page: {{book.totalPage}}</div>
-                  <div class="small">Size: {{book.pdfFile.size | filesize}}</div>
-
-                </div>
-              </div>
-
-              <div class="card-footer border-0">
-                <button (click)="onEdit(book, i)" class="btn btn-sm btn-outline-primary m-1 float-start">Edit</button>
-              </div>
-
-            </div>
+          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 my-2" *ngFor="let book of books; let i=index">
+            <app-book-card [book]="book"  [admin]="true" (editBook)="onEdit($event, i)"></app-book-card>
           </div>
         </div>
 

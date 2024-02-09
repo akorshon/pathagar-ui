@@ -20,7 +20,7 @@ export class CategoriesComponent implements OnInit {
   pageNumber = 1;
   loadInit = true;
   page!: Page;
-  authors = new Array<Author>();
+  categories = new Array<Category>();
   fileUrl = environment.backendUrl + '/api/public/files/';
 
 	constructor(
@@ -42,7 +42,7 @@ export class CategoriesComponent implements OnInit {
 
   loadAuthors(pageNumber:number, search: string) {
     this.adminCategoryService.findAll(pageNumber, search).subscribe(resp => {
-      this.authors = resp.content;
+      this.categories = resp.content;
       if(this.loadInit) {
         this.loadInit = false;
         this.page = new Page(pageNumber, resp.numberOfElements, resp.totalElements, resp.totalPages, resp.first, resp.last);
@@ -75,7 +75,7 @@ export class CategoriesComponent implements OnInit {
 
     modalRef.result.then((result) => {
       if(result.action == 'deleted') {
-        this.authors.splice(index, 1);
+        this.categories.splice(index, 1);
       }
     });
   }

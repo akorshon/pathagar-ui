@@ -3,7 +3,7 @@ import {Book} from "../book";
 import {Author} from "../../author/author";
 import {environment} from "../../../../environments/environment";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {AdminFileService} from "../../service/admin-file-service";
+import {AdminBookService} from "../admin-book-service";
 
 @Component({
 	selector: 'app-book-upload',
@@ -22,7 +22,7 @@ export class BookUploadComponent {
 
 	constructor(
     public ngbActiveModal: NgbActiveModal,
-    private adminFileService: AdminFileService) {
+    private adminBookService: AdminBookService) {
 	}
 
 	onClickFileInputButton(id: string) {
@@ -43,7 +43,7 @@ export class BookUploadComponent {
 
     let count = 0;
     for (let book of books) {
-      this.adminFileService.uploadBook(book).subscribe({
+      this.adminBookService.save(book).subscribe({
         next: (resp) => {
           console.log('success');
           this.uploadedBooks.push(resp);

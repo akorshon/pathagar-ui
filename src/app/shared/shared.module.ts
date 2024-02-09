@@ -10,6 +10,9 @@ import {CommonModule} from "@angular/common";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {FileSizePipe} from "./pipe/file-size-pipe";
 import {ErrorComponent} from "./error/error.component";
+import {CategoryCardComponent} from "./category-card/category-card.component";
+import {BookCardComponent} from "./book-card/book-card.component";
+import {AuthorCardComponent} from "./author-card/author-card.component";
 
 @NgModule({
     imports: [
@@ -29,12 +32,18 @@ import {ErrorComponent} from "./error/error.component";
     UserLayoutComponent,
     FileSizePipe,
     ErrorComponent,
+    CategoryCardComponent,
+    BookCardComponent,
+    AuthorCardComponent,
   ],
   providers: [
   ],
   exports: [
     FileSizePipe,
     ErrorComponent,
+    BookCardComponent,
+    CategoryCardComponent,
+    AuthorCardComponent,
   ],
 })
 export class SharedModule { }

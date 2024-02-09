@@ -11,20 +11,8 @@
 
 
     <div class="row">
-      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 my-2 d-flex align-items-stretch" *ngFor="let author of authors; let i=index">
-        <div class="card border-0">
-          <div class="card-body" (click)="onDetails(author)">
-            <picture>
-              <img [src]="fileUrl + author.thumbFile.path" class="rounded img-fluid" alt="{{author.name}}">
-            </picture>
-            <p>{{author.name}}</p>
-          </div>
-
-          <div class="card-footer border-0">
-            <button (click)="onEdit(author, i)" class="btn btn-sm btn-warning m-1">Edit</button>
-          </div>
-
-        </div>
+      <div class="col col-xs-6 col-sm-4 col-md-3 col-lg-2 my-2" *ngFor="let author of authors; let i=index">
+        <app-author-card [author]="author" [admin]="true" (editAuthor)="onEdit($event, i)"></app-author-card>
       </div>
     </div>
 

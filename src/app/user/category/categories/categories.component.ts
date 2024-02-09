@@ -47,13 +47,8 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
-
-
   onPageChange(pageNumber: any) {
     this.loadCategories(pageNumber, '');
   }
 
-  onCategoryDetails(author: Author) {
-    this.router.navigate(['/user/category', author.id]);
-  }
 }

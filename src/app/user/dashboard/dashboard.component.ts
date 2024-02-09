@@ -15,6 +15,7 @@ import {Router} from "@angular/router";
 	templateUrl: './dashboard.component.html',
 	styleUrls: []
 })
+
 export class DashboardComponent implements OnInit {
   time = new Date();
   categories: Category[] = [];
@@ -60,11 +61,11 @@ export class DashboardComponent implements OnInit {
   }
   customOptions: OwlOptions = {
     loop: false,
-    margin: 10,
+    margin: 20,
     stagePadding: 10,
-    mouseDrag: false,
-    touchDrag: false,
-    pullDrag: false,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
     dots: false,
     navSpeed: 700,
     navText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
@@ -76,10 +77,10 @@ export class DashboardComponent implements OnInit {
         items: 2
       },
       740: {
-        items: 4
+        items: 3
       },
       940: {
-        items: 6
+        items: 5
       }
     },
     nav: true

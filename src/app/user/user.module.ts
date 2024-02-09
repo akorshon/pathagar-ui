@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {BookComponent} from "./book/book/book.component";
+import {BooksComponent} from "./book/books/books.component";
 import {UserRoutingModule} from "./user-routing.module";
 import {NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
 import {UserBookComponent} from "./book/user-book/user-book.component";
@@ -14,6 +14,7 @@ import {CategoriesComponent} from "./category/categories/categories.component";
 import {CategoryDetailsComponent} from "./category/category-details/category-details.component";
 import {CarouselModule} from "ngx-owl-carousel-o";
 import {DashboardComponent} from "./dashboard/dashboard.component";
+import {BookComponent} from "./book/book/books.component";
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
         CarouselModule,
     ],
   declarations: [
+    BooksComponent,
     BookComponent,
     UserBookComponent,
     BookViewComponent,

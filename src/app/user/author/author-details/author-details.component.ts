@@ -49,7 +49,7 @@ export class AuthorDetailsComponent implements OnInit {
   }
 
   /*onEdit(book: Book, index: number) {
-    const  modalRef = this.ngbModal.open(BookComponent, {
+    const  modalRef = this.ngbModal.open(BooksComponent, {
       size: 'lg',
       backdrop: 'static'
     });

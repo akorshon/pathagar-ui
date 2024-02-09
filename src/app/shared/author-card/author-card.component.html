@@ -1,0 +1,13 @@
+<div class="card border-0  shadow h-100">
+  <img [src]="fileUrl + author.imageFile.path"
+       style="width: 100%; height: auto"
+       class="rounded card-img-top" alt="{{author.name}}">
+  <div class="card-body">
+    <h5 class="card-title">{{author.name}}</h5>
+
+    <div class="d-flex flex-row gap-2">
+      <button class="btn btn-sm btn-primary" (click)="onAuthorDetails(author)">View Details</button>
+      <button *ngIf="admin" (click)="onEdit(author)" class="btn btn-sm btn-warning">Edit</button>
+    </div>
+  </div>
+</div>

@@ -1,18 +1,10 @@
 <div class="card">
   <div class="card-header">Categories</div>
 
-  <div class="card-body ">
+  <div class="card-body">
     <div class="row">
-      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 my-2 d-flex align-items-stretch" *ngFor="let author of categories; let i=index">
-        <div class="card border-0">
-          <div class="card-body" (click)="onCategoryDetails(author)">
-            <picture>
-              <img [src]="fileUrl + author.thumbFile.path" class="rounded img-fluid" alt="{{author.name}}">
-            </picture>
-            <p>{{author.name}}</p>
-          </div>
-
-        </div>
+      <div class="col-2 col-xs-6 col-sm-4 col-md-3 col-lg-2 my-2" *ngFor="let category of categories; let i=index">
+        <app-category-card [category]="category"></app-category-card>
       </div>
     </div>
 

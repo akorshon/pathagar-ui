@@ -54,7 +54,4 @@ export class AuthorsComponent implements OnInit {
     this.loadAuthors(pageNumber, '');
   }
 
-  onAuthorDetails(author: Author) {
-    this.router.navigate(['/user/author', author.id]);
-  }
 }
