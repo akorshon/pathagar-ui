@@ -1,29 +1,30 @@
-# PathagarUi
+# pathagar-ui
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=akorshon_pathagar-ui&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=akorshon_pathagar-ui)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=akorshon_pathagar-ui&metric=bugs)](https://sonarcloud.io/summary/new_code?id=akorshon_pathagar-ui)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=akorshon_pathagar-ui&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=akorshon_pathagar-ui)
 
-![Alt text](/screenshot/dashboard.png?raw=true "Optional Title")
+pathagar-ui is the web application for the pathager project. It is a library management system.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.9.
+
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Run `ng serve` for a dev server. 
+- Navigate to `http://localhost:4200/`
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Screenshots
+# Desktop
+![Alt text](/screenshot/dashboard.png?raw=true "Dashboard")
+![Alt text](/screenshot/author-list.png?raw=true "Author list")
+![Alt text](/screenshot/book-list.png?raw=true "Book list")
+![Alt text](/screenshot/category-list.png?raw=true "Category list")
+![Alt text](/screenshot/user-book-list.png?raw=true "Category list")
 
-## Build
+# Mobile
+![Alt text](/screenshot/mobile-dashboard.png?raw=true "Dashboard")
+![Alt text](/screenshot/mobile-author-list.png?raw=true "Author list")
+![Alt text](/screenshot/mobile-book-list.png?raw=true "Book list")
+![Alt text](/screenshot/mobile-category-list.png?raw=true "Category list")
+![Alt text](/screenshot/mobile-user-bokk-list.png?raw=true "User book list")
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
