@@ -14,26 +14,53 @@ pathagar-ui is the web application for the pathager project. It is a library man
 
 
 ## Screenshots
+### Login
+![Alt text](/screenshot/login.png?raw=true "Login")
+
+### Registration
+![Alt text](/screenshot/registration.png?raw=true "Registration")
+
+### Forgot password
+![Alt text](/screenshot/recover-password.png?raw=true "Forgot password")
+
 ### Dashboard
 ![Alt text](/screenshot/dashboard.png?raw=true "Dashboard")
+
 #### Author list
 ![Alt text](/screenshot/author-list.png?raw=true "Author list")
+
 #### Book list
 ![Alt text](/screenshot/book-list.png?raw=true "Book list")
+
 #### Category list
 ![Alt text](/screenshot/category-list.png?raw=true "Category list")
+
 #### User book list
 ![Alt text](/screenshot/user-book-list.png?raw=true "Category list")
 
+
 ### Mobile
+### Login
+![Alt text](/screenshot/mobile-login.png?raw=true "Login")
+
+### Registration
+![Alt text](/screenshot/mobile-registration.png?raw=true "Registration")
+
+### Forgot password
+![Alt text](/screenshot/mobile-recover-password.png?raw=true "Forgot password")
+
 ### Dashboard
 ![Alt text](/screenshot/mobile-dashboard.png?raw=true "Dashboard")
+
 #### Author list
 ![Alt text](/screenshot/mobile-author-list.png?raw=true "Author list")
+
 #### Book list
 ![Alt text](/screenshot/mobile-book-list.png?raw=true "Book list")
+
 #### Category list
 ![Alt text](/screenshot/mobile-category-list.png?raw=true "Category list")
+
 #### User book list
 ![Alt text](/screenshot/mobile-user-bokk-list.png?raw=true "User book list")
 
