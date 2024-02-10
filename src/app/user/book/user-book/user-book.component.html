@@ -4,7 +4,7 @@
       <div class="card-body ">
 
         <div class="row">
-          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 my-2" *ngFor="let userBook of userBooks; let i=index">
+          <div class="col-6 col-xs-6 col-sm-4 col-md-3 col-lg-2 my-2" *ngFor="let userBook of userBooks; let i=index">
             <div class="card shadow h-100" style="border: none">
 
               <img [src]="fileUrl + userBook.book.coverImage.path"
